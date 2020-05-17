@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<!-- 别名定义 -->
-	<typeAliases>
-		<package name="com.itheima.po" />
-	</typeAliases>
+<!--	<typeAliases>-->
+<!--		<package name="com.itheima.po" />-->
+<!--	</typeAliases>-->
 </configuration>

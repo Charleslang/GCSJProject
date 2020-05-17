@@ -46,9 +46,9 @@
           <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
     <!-- 配置mapper扫描器 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.itheima.dao"/>
-	</bean>
+<!--	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--		<property name="basePackage" value="com.itheima.dao"/>-->
+<!--	</bean>-->
     <!-- 扫描Service --> 
-    <context:component-scan base-package="com.itheima.service" />
+<!--    <context:component-scan base-package="com.itheima.service" />-->
 </beans>
