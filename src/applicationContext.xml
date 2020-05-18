@@ -46,9 +46,32 @@
           <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
     <!-- 配置mapper扫描器 -->
-<!--	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-<!--		<property name="basePackage" value="com.itheima.dao"/>-->
-<!--	</bean>-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.itheima.user.dao"/>
+	</bean>
     <!-- 扫描Service --> 
-<!--    <context:component-scan base-package="com.itheima.service" />-->
+    <context:component-scan base-package="com.itheima.user.service" />
+
+
+
+	<context:component-scan base-package="com.itheima.common.redis" />
+	<!-- 初始化Jedis连接池-->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!--最大连接数, 默认8个-->
+		<property name="maxTotal" value="50" />
+		<!--最大空闲连接数, 默认8-->
+		<property name="maxIdle" value="10" />
+		<!--连接时的最大等待毫秒数-->
+		<property name="maxWaitMillis" value="1000" />
+		<!--获得一个jedis实例的时候是否检查连接可用性-->
+		<property name="testOnBorrow" value="true" />
+	</bean>
+	<!-- 把jedisPool交给spring管理 -->
+	<bean   class="redis.clients.jedis.JedisPool" >
+		<constructor-arg name="poolConfig" ref="poolConfig"></constructor-arg>
+		<constructor-arg name="host" value="139.9.87.17"></constructor-arg>
+		<constructor-arg name="port" value="6379"></constructor-arg>
+	</bean>
+
+
 </beans>

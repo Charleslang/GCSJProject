@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.user.dao.UserLoginDao" >
+    <!--新增qq用户-->
+   <insert id="insertUserQq">
+       insert into tb_user_qq(u_q_nickname, u_q_gender, u_q_profile, u_q_create_time, u_q_login_time, u_q_openid)
+       values(#{uQNickname}, #{uQGender}, #{uQProfile}, #{uQCreateTime}, #{uQLoginTime}, #{uQOpenid})
+   </insert>
+    <!--更新qq用户-->
+    <update id="updateUserQqLoginTime">
+        update tb_user_qq set u_q_login_time = u_login_time+1
+        where u_q_openid = #{uQOpenid}
+    </update>
+    <!--查询用户是否存在-->
+    <select id="selectUserQq" resultType="com.itheima.user.pojo.UserQQ">
+        select u_q_nickname as mNickname, u_q_gender as mGender, u_q_profile as mProfile,u_q_openid as mOpenid
+        from tb_user_qq where u_q_openid = #{openid}
+    </select>
+
+</mapper>

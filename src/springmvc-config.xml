@@ -14,18 +14,5 @@
 	<!-- 加载注解驱动 -->
 	<mvc:annotation-driven />
 
-<!--	&lt;!&ndash;配置静态资源的访问映射，此配置中的文件，将不被前端控制器拦截 &ndash;&gt;-->
-<!--	<mvc:resources location="/js/" mapping="/js/**"/>-->
-<!--	<mvc:resources location="/css/" mapping="/css/**"/>-->
-<!--	<mvc:resources location="/fonts/" mapping="/fonts/**"/>-->
-<!--	<mvc:resources location="/images/" mapping="/images/**"/>-->
-<!--	<mvc:resources location="/lib/" mapping="/lib/**"/>-->
-<!--	<mvc:resources location="/layui_exts/" mapping="/layui_exts/**"/>-->
 
-<!--	&lt;!&ndash; 配置视图解析器 &ndash;&gt;-->
-<!--	<bean class=-->
-<!--    "org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--		<property name="prefix" value="/WEB-INF/jsp/" />-->
-<!--		<property name="suffix" value=".jsp" />-->
-<!--	</bean>-->
 </beans>
