@@ -1,10 +1,13 @@
 package com.itheima.user.pojo;
+
+import java.io.Serializable;
+
 /**
   * qq用户实体类
   *
   * @author: qinjie
  **/
-public class UserQQ implements User {
+public class UserQQ implements User, Serializable {
     /**
      * 昵称
      */

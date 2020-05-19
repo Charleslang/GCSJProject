@@ -9,8 +9,8 @@
    </insert>
     <!--更新qq用户-->
     <update id="updateUserQqLoginTime">
-        update tb_user_qq set u_q_login_time = u_login_time+1
-        where u_q_openid = #{uQOpenid}
+        update tb_user_qq set u_q_login_time = u_q_login_time+1
+        where u_q_openid = #{openid}
     </update>
     <!--查询用户是否存在-->
     <select id="selectUserQq" resultType="com.itheima.user.pojo.UserQQ">

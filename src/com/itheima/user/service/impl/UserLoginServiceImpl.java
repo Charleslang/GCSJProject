@@ -1,15 +1,14 @@
 package com.itheima.user.service.impl;
 
+import com.itheima.common.RRException;
 import com.itheima.common.redis.JedisUtil;
 import com.itheima.common.utils.CommonUtils;
+import com.itheima.entity.TbUserQq;
 import com.itheima.user.dao.UserLoginDao;
 import com.itheima.user.dto.LoginQQDTO;
-import com.itheima.user.pojo.User;
 import com.itheima.user.pojo.UserQQ;
 import com.itheima.user.service.UserLoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
 
@@ -26,14 +25,32 @@ public class UserLoginServiceImpl implements UserLoginService {
         if(userQQ!=null){
             //数据库存在qq用户
             //直接返回用户信息，更新登陆次数
-            userLoginDao.updateUserQqLoginTime();
-            //生成平台token
-            String token = System.currentTimeMillis()+""+CommonUtils.getRandomString(10);
-            jedisUtil.putObjectWithExpire(token, userQQ, 60);
+            userLoginDao.updateUserQqLoginTime(loginDTO.getOpenid());
         }else{
+            userQQ = new UserQQ();
+            //数据库不存在，插入用户
+            TbUserQq tbUserQq = new TbUserQq();
+            tbUserQq.setUQCreateTime(new java.sql.Date(System.currentTimeMillis()));
+            tbUserQq.setUQLoginTime(1);
+            tbUserQq.setUQProfile(loginDTO.getProfile());
+            tbUserQq.setUQNickname(loginDTO.getNickname());
+            tbUserQq.setUQGender(loginDTO.getGender());
+            tbUserQq.setUQOpenid(loginDTO.getOpenid());
+            userLoginDao.insertUserQq(tbUserQq);
 
+            //设置返回值
+            userQQ.setmGender(loginDTO.getGender());
+            userQQ.setmNickname(loginDTO.getNickname());
+            userQQ.setmOpenid(loginDTO.getOpenid());
+            userQQ.setmProfile(loginDTO.getProfile());
         }
-
+//生成平台token
+        String token = System.currentTimeMillis()+""+CommonUtils.getRandomString(7);
+//        throw new RRException(token+""+userQQ.toString(), 200);
+        jedisUtil.putObjectWithExpire(token, userQQ, 3600);
+        userQQ.setmToken(token);
         return userQQ;
+    }
+    public static void main(String args[]){
     }
 }
