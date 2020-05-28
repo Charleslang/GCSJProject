@@ -54,6 +54,7 @@
 
 
 
+
 	<context:component-scan base-package="com.itheima.common.redis" />
 	<!-- 初始化Jedis连接池-->
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">

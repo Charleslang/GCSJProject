@@ -3,14 +3,17 @@ package com.itheima.user.service.impl;
 import com.itheima.common.RRException;
 import com.itheima.common.redis.JedisUtil;
 import com.itheima.common.utils.CommonUtils;
+import com.itheima.entity.TbUser;
 import com.itheima.entity.TbUserQq;
 import com.itheima.user.dao.UserLoginDao;
 import com.itheima.user.dto.LoginQQDTO;
 import com.itheima.user.pojo.UserQQ;
 import com.itheima.user.service.UserLoginService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Date;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
@@ -51,6 +54,27 @@ public class UserLoginServiceImpl implements UserLoginService {
         userQQ.setmToken(token);
         return userQQ;
     }
+
+    @Override
+    @Transactional
+    public Object test() {
+        //测试事务的隔离级别
+
+        //
+        TbUser user = new TbUser();
+        user.setUAccount("123456789");
+        user.setUCreateTime(new Date(System.currentTimeMillis()));
+        userLoginDao.insertUser(user);
+
+
+        //读取用户
+        System.out.println(userLoginDao.selectUserByAccount("123456789"));
+        System.out.println(userLoginDao.selectUserByAccount("123456789").getUAccount());
+
+        int a = 1/0;
+        return null;
+    }
+
     public static void main(String args[]){
     }
 }

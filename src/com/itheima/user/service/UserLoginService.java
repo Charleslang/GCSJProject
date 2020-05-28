@@ -11,5 +11,6 @@ public interface UserLoginService {
      * @return com.itheima.user.pojo.User
      */
     UserQQ selectUserWhenLoginQQ(LoginQQDTO loginQQDTO);
-    
+
+    Object test();
 }

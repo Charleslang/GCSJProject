@@ -18,4 +18,20 @@
         from tb_user_qq where u_q_openid = #{openid}
     </select>
 
+    <!--新增普通用户-->
+    <insert id="insertUser" useGeneratedKeys="true" keyColumn="u_id" keyProperty="uId">
+        insert into tb_user(u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time)
+        values (uNickname, uAccount, uPassword,uGender,uSalt,uEmail,uProfile,uCreateTime,uLoginTime)
+    </insert>
+    <!--查询普通用户-->
+    <select id="selectUserByAccount" resultType="com.itheima.entity.TbUser">
+        select * from tb_user where u_account = #{account}
+    </select>
+    <!--更新用户-->
+    <update id="updateUserByUserId">
+        update tb_user set
+        <if test="uNickname!=null">
+            u_nickname = #{uNickname}
+        </if>
+    </update>
 </mapper>
