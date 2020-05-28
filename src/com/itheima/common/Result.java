@@ -16,7 +16,7 @@ public class Result<T> {
     public static Result ok(){
         return new Result(SUCCESS, "success");
     }
-    public static Result getInstance(Integer code, String msg){
+    public static Result error(Integer code, String msg){
         return new Result(code, msg);
     }
     public static Result ok(Object datas){

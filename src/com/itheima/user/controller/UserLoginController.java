@@ -1,16 +1,21 @@
 package com.itheima.user.controller;
 
+import com.itheima.common.RRException;
 import com.itheima.common.redis.JedisUtil;
 import com.itheima.common.validator.AopValidator;
 import com.itheima.user.dto.LoginQQDTO;
+import com.itheima.user.dto.RegisterDTO;
+import com.itheima.user.dto.t;
 import com.itheima.user.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.itheima.common.Result;
 import com.itheima.common.validator.DTOValidatorAnnotation;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 @RestController
-@RequestMapping("/user")
 public class UserLoginController {
     @Autowired
     private UserLoginService userLoginService;
@@ -30,12 +35,17 @@ public class UserLoginController {
     }
 
     @PostMapping("/register")
-    public Result register(@RequestBody LoginQQDTO loginQQDTO){
-        return Result.ok(userLoginService.selectUserWhenLoginQQ(loginQQDTO));
+    @DTOValidatorAnnotation
+    public Result register(@RequestBody RegisterDTO registerDTO) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        userLoginService.registerUser(registerDTO);
+        return Result.ok();
     }
 
     @GetMapping("/test")
-    public Result test(){
-        return Result.ok(userLoginService.test());
+    @DTOValidatorAnnotation
+    public Result test(t tt){
+//        throw new RRException("asdasd", 500);
+        return null;
+//        return Result.ok(userLoginService.test());
     }
 }

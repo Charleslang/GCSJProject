@@ -14,8 +14,10 @@ public interface UserLoginDao {
     UserQQ selectUserQq(String openid);
     //新增普通用户
     Integer insertUser(TbUser tbUser);
-    //查询普通用户
+    //查询普通用户通过账户
     TbUser selectUserByAccount(String account);
+    //查询普通用户通过邮箱
+    TbUser selectUserByEmail(String email);
     //更新用户
     Integer updateUserByUserId(Integer userId);
 }

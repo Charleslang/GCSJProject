@@ -18,14 +18,18 @@
         from tb_user_qq where u_q_openid = #{openid}
     </select>
 
-    <!--新增普通用户-->
+    <!--新增普通用户，账户查询-->
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="u_id" keyProperty="uId">
         insert into tb_user(u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time)
-        values (uNickname, uAccount, uPassword,uGender,uSalt,uEmail,uProfile,uCreateTime,uLoginTime)
+        values (#{uNickname}, #{uAccount}, #{uPassword},#{uGender},#{uSalt},#{uEmail},#{uProfile},#{uCreateTime},#{uLoginTime})
     </insert>
     <!--查询普通用户-->
     <select id="selectUserByAccount" resultType="com.itheima.entity.TbUser">
-        select * from tb_user where u_account = #{account}
+        select u_id, u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time from tb_user where u_account = #{account}
+    </select>
+    <!--查普通用户，邮箱查询-->
+    <select id="selectUserByEmail" resultType="com.itheima.entity.TbUser">
+        select u_id, u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time from tb_user where u_email = #{email}
     </select>
     <!--更新用户-->
     <update id="updateUserByUserId">
