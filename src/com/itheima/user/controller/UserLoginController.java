@@ -2,7 +2,9 @@ package com.itheima.user.controller;
 
 import com.itheima.common.RRException;
 import com.itheima.common.redis.JedisUtil;
+import com.itheima.common.utils.CommonUtils;
 import com.itheima.common.validator.AopValidator;
+import com.itheima.user.dto.LoginOrdinaryDTO;
 import com.itheima.user.dto.LoginQQDTO;
 import com.itheima.user.dto.RegisterDTO;
 import com.itheima.user.dto.t;
@@ -16,22 +18,26 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 @RestController
+@RequestMapping("/users")
 public class UserLoginController {
     @Autowired
     private UserLoginService userLoginService;
     @Autowired
     private JedisUtil jedisUtil;
-//    @GetMapping("/test")
-//    public Result test(){
-//        System.out.println("asdadad");
-//        jedisUtil.putObjectWithExpire("test", "test", 60);
-//        System.out.println(jedisUtil.getObject("test"));
-//        return Result.ok(jedisUtil.getObject("test"));
-//    }
     @PostMapping("/loginQQ")
     @DTOValidatorAnnotation
     public Result loginQQ(@RequestBody LoginQQDTO loginQQDTO){
         return Result.ok(userLoginService.selectUserWhenLoginQQ(loginQQDTO));
+    }
+    @PostMapping("/login")
+    @DTOValidatorAnnotation
+    public Result login(@RequestBody LoginOrdinaryDTO loginOrdinaryDTO) {
+        return Result.ok(userLoginService.selectUserWhenLoginOrdinary(loginOrdinaryDTO));
+    }
+    @GetMapping("/logout")
+    public Result logout() {
+//        jedisUtil.removeObject()
+        return Result.ok();
     }
 
     @PostMapping("/register")
@@ -40,12 +46,8 @@ public class UserLoginController {
         userLoginService.registerUser(registerDTO);
         return Result.ok();
     }
-
-    @GetMapping("/test")
-    @DTOValidatorAnnotation
-    public Result test(t tt){
-//        throw new RRException("asdasd", 500);
-        return null;
-//        return Result.ok(userLoginService.test());
+    @GetMapping("t")
+    public void a(){
+        jedisUtil.putObjectWithExpire("topke", "", 1000);
     }
 }

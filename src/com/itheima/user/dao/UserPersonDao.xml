@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.user.dao.UserPersonDao" >
+   <!--更新用户信息-->
+    <update id="updateUserInfoById">
+        update tb_user
+        <trim prefix="set "  suffixOverrides=",">
+            <if test="uNickname!=null">
+                u_nickname = #{uNickname},
+            </if>
+            <if test="uGender!=null">
+                u_gender = #{uGender},
+            </if>
+            <if test="uProfile!=null">
+                u_profile = #{uProfile},
+            </if>
+            <if test="uSalt!=null">
+                u_salt = #{uSalt},
+            </if>
+            <if test="uPassword!=null">
+                u_password = #{uPassword},
+            </if>
+        </trim>
+        where u_id = #{uId}
+    </update>
+</mapper>

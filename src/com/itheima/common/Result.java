@@ -1,26 +1,28 @@
 package com.itheima.common;
 
+import static com.itheima.util.StaticParams.ERROR_CODE;
+import static com.itheima.util.StaticParams.SUCCESS_CODE;
+
 /**
   * 自定义异常类，适用于swagger的返回值说明
   *
   * @author: qinjie
  **/
 public class Result<T> {
-    public final static Integer SUCCESS = 200;
-    public final static Integer ERROR = 500;
-    public final static Integer UNAUTHORIZED = 401;
-    public final static Integer FORBIDDEN = 403;
     private int code;
     private String msg;
     private T datas;
     public static Result ok(){
-        return new Result(SUCCESS, "success");
+        return new Result(SUCCESS_CODE, "success");
     }
     public static Result error(Integer code, String msg){
         return new Result(code, msg);
     }
+    public static Result error( String msg){
+        return new Result(ERROR_CODE, msg);
+    }
     public static Result ok(Object datas){
-        return new Result(SUCCESS, "success",datas);
+        return new Result(SUCCESS_CODE, "success",datas);
     }
     public Result(int code, String msg, T datas) {
         this.code = code;

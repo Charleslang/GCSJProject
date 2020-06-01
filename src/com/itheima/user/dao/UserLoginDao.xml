@@ -20,16 +20,14 @@
 
     <!--新增普通用户，账户查询-->
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="u_id" keyProperty="uId">
-        insert into tb_user(u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time)
-        values (#{uNickname}, #{uAccount}, #{uPassword},#{uGender},#{uSalt},#{uEmail},#{uProfile},#{uCreateTime},#{uLoginTime})
+        insert into tb_user(u_nickname, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time)
+        values (#{uNickname}, #{uPassword},#{uGender},#{uSalt},#{uEmail},#{uProfile},#{uCreateTime},#{uLoginTime})
     </insert>
-    <!--查询普通用户-->
-    <select id="selectUserByAccount" resultType="com.itheima.entity.TbUser">
-        select u_id, u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time from tb_user where u_account = #{account}
-    </select>
     <!--查普通用户，邮箱查询-->
     <select id="selectUserByEmail" resultType="com.itheima.entity.TbUser">
-        select u_id, u_nickname, u_account, u_password, u_gender, u_salt, u_email, u_profile, u_create_time, u_login_time from tb_user where u_email = #{email}
+        select u_id as uId, u_nickname as uNickname,
+         u_password as uPassword, u_gender as uGender, u_salt as uSalt, u_email as uEmail,
+         u_profile as uProfile, u_create_time as uCreateTime, u_login_time as uLoginTime from tb_user where u_email = #{email}
     </select>
     <!--更新用户-->
     <update id="updateUserByUserId">

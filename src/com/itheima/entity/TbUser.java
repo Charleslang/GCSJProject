@@ -4,7 +4,6 @@ public class TbUser {
 
   private Integer uId;
   private String uNickname;
-  private String uAccount;
   private String uPassword;
   private String uGender;
   private String uSalt;
@@ -31,14 +30,6 @@ public class TbUser {
     this.uNickname = uNickname;
   }
 
-
-  public String getUAccount() {
-    return uAccount;
-  }
-
-  public void setUAccount(String uAccount) {
-    this.uAccount = uAccount;
-  }
 
 
   public String getUPassword() {

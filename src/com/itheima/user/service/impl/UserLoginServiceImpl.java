@@ -7,8 +7,11 @@ import com.itheima.common.utils.PBKDF2Util;
 import com.itheima.entity.TbUser;
 import com.itheima.entity.TbUserQq;
 import com.itheima.user.dao.UserLoginDao;
+import com.itheima.user.dto.LoginOrdinaryDTO;
 import com.itheima.user.dto.LoginQQDTO;
 import com.itheima.user.dto.RegisterDTO;
+import com.itheima.user.pojo.User;
+import com.itheima.user.pojo.UserOrdinary;
 import com.itheima.user.pojo.UserQQ;
 import com.itheima.user.service.UserLoginService;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Date;
 
-import static com.itheima.util.StaticParams.DefaultProfile;
+import static com.itheima.util.StaticParams.*;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
@@ -29,7 +32,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     private JedisUtil jedisUtil;
 
     @Override
-    public UserQQ selectUserWhenLoginQQ(LoginQQDTO loginDTO) {
+    public String selectUserWhenLoginQQ(LoginQQDTO loginDTO) {
         //通过openid查询数据库是否存在用户
         UserQQ userQQ = userLoginDao.selectUserQq(loginDTO.getOpenid());
         if (userQQ != null) {
@@ -56,29 +59,65 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
         //生成平台token
         String token = System.currentTimeMillis() + "" + CommonUtils.getRandomString(7);
-        jedisUtil.putObjectWithExpire(token, userQQ, 3600);
         userQQ.setmToken(token);
-        return userQQ;
+        jedisUtil.putObjectWithExpire(token, userQQ, TOKEN_VALIDITY);
+        return token;
+    }
+
+    @Override
+    public String selectUserWhenLoginOrdinary(LoginOrdinaryDTO loginOrdinaryDTO)  {
+        TbUser user = userLoginDao.selectUserByEmail(loginOrdinaryDTO.getEmail());
+        if(user==null){
+            throw new RRException("不存在用户", ERROR_CODE);
+        }
+        try {
+            if (!PBKDF2Util.authenticate(loginOrdinaryDTO.getPassword(), user.getUPassword(), user.getUSalt())) {
+                throw new RRException("密码错误", ERROR_CODE);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RRException("加密错误，错误类型NoSuchAlgorithmException", ERROR_CODE);
+        } catch (InvalidKeySpecException e) {
+            throw new RRException("加密错误，错误类型InvalidKeySpecException", ERROR_CODE);
+        }
+        //生成平台token
+        String token = System.currentTimeMillis() + "" + CommonUtils.getRandomString(7);
+        UserOrdinary userOrdinary = new UserOrdinary(
+                user.getUId(),
+                user.getUNickname(),
+                token,
+                user.getUEmail(),
+                user.getUGender(),
+                user.getUProfile()
+        );
+        jedisUtil.putObjectWithExpire(token, userOrdinary, TOKEN_VALIDITY);
+        return token;
     }
 
     @Override
     public Integer registerUser(RegisterDTO registerDTO) throws NoSuchAlgorithmException, InvalidKeySpecException {
         TbUser tbUser1 =  userLoginDao.selectUserByEmail(registerDTO.getEmail());
         if(tbUser1!=null){
-            throw new RRException("该邮箱已绑定", 500);
+            throw new RRException("该邮箱已绑定", ERROR_CODE);
         }
+        System.out.println(tbUser1);
         TbUser tbUser = new TbUser();
         tbUser.setUCreateTime(new Date(System.currentTimeMillis()));
         tbUser.setUGender(registerDTO.getGender());
         tbUser.setULoginTime(0);
-        tbUser.setUProfile(DefaultProfile);
+        tbUser.setUProfile(DEFAULT_PROFILE);
         tbUser.setUSalt(PBKDF2Util.generateSalt());
         tbUser.setUPassword(PBKDF2Util.getEncryptedPassword(registerDTO.getPassword(),tbUser.getUSalt()));
         tbUser.setUNickname(registerDTO.getNickname());
-        tbUser.setUAccount(registerDTO.getEmail());
         tbUser.setUEmail(registerDTO.getEmail());
         userLoginDao.insertUser(tbUser);
         return tbUser.getUId();
+    }
+
+    @Override
+    public Integer logout() {
+        User user = CommonUtils.getCurrentUser(jedisUtil);
+        jedisUtil.removeObject(user.getmToken());
+        return 1;
     }
 
     @Override
@@ -88,14 +127,12 @@ public class UserLoginServiceImpl implements UserLoginService {
 
         //
         TbUser user = new TbUser();
-        user.setUAccount("123456789");
         user.setUCreateTime(new Date(System.currentTimeMillis()));
         userLoginDao.insertUser(user);
 
 
         //读取用户
         System.out.println(userLoginDao.selectUserByAccount("123456789"));
-        System.out.println(userLoginDao.selectUserByAccount("123456789").getUAccount());
 
         int a = 1 / 0;
         return null;

@@ -1,5 +1,6 @@
 package com.itheima.common.config;
 
+import com.itheima.common.RRException;
 import com.itheima.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -23,6 +24,11 @@ public class ExceptionHandlerConfig {
     public Result handlerException(Exception e) {
         e.printStackTrace();
         return Result.error(500, "未知异常");
+    }
+    @ExceptionHandler(RRException.class)
+    public Result handlerException(RRException e) {
+        e.printStackTrace();
+        return Result.error(500, e.getMsg());
     }
     @ExceptionHandler(ValidationException.class)
     public Result handlerException(ValidationException e) {

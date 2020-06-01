@@ -1,5 +1,8 @@
 package com.itheima.common.utils;
 
+import com.itheima.common.redis.JedisUtil;
+import com.itheima.user.pojo.User;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -249,5 +252,16 @@ public class CommonUtils {
         return res;
     }
 
+
+    public static User getCurrentUser(final JedisUtil jedisUtil){
+        Object token = CommonUtils.getHeadToken((ServletRequestAttributes) RequestContextHolder.getRequestAttributes(), "token");
+        if(token!=null){
+            User user = (User) jedisUtil.getObject(token);
+            if(user!=null){
+                return user;
+            }
+        }
+        return null;
+    }
 
 }

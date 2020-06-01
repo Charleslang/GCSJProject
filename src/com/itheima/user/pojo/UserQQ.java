@@ -61,10 +61,12 @@ public class UserQQ implements User, Serializable {
         this.mProfile = mProfile;
     }
 
+    @Override
     public String getmToken() {
         return mToken;
     }
 
+    @Override
     public void setmToken(String mToken) {
         this.mToken = mToken;
     }

@@ -74,6 +74,6 @@
 		<constructor-arg name="host" value="139.9.87.17"></constructor-arg>
 		<constructor-arg name="port" value="6379"></constructor-arg>
 	</bean>
-
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 </beans>
