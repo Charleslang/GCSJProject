@@ -6,4 +6,8 @@
 <!--	<typeAliases>-->
 <!--		<package name="com.itheima.po" />-->
 <!--	</typeAliases>-->
+	<!-- 驼峰转下划线 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
 </configuration>
