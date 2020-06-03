@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.user.dao.UserOrderDao" >
+  <!--订单列表-->
+    <select id="selectOrderList" resultMap="selectOrderList, selectOrderListTotal">
+        select SQL_CALC_FOUND_ROWS order_id, pay_price, goods_num, order_time, pay_time, order_status, user_id, user_type, user_nickname, user_addr, goods_name, goods_price from tb_order
+        limit #{pageNum}, #{pageSize};
+ SELECT FOUND_ROWS() as totalNum;
+    </select>
+    <resultMap id="selectOrderList" type="com.itheima.entity.TbOrder">
+    </resultMap>
+    <resultMap id="selectOrderListTotal" type="Integer">
+        <result column="totalNum"></result>
+    </resultMap>
+</mapper>

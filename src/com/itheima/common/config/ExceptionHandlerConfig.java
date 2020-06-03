@@ -30,6 +30,11 @@ public class ExceptionHandlerConfig {
         e.printStackTrace();
         return Result.error(500, e.getMsg());
     }
+@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Result handlerException(HttpRequestMethodNotSupportedException e) {
+        e.printStackTrace();
+        return Result.error(500, "请求方式错误");
+    }
     @ExceptionHandler(ValidationException.class)
     public Result handlerException(ValidationException e) {
         e.printStackTrace();

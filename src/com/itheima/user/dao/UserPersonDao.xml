@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itheima.user.dao.UserPersonDao" >
-   <!--更新用户信息-->
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.user.dao.UserPersonDao">
+    <!--更新用户信息-->
     <update id="updateUserInfoById">
         update tb_user
-        <trim prefix="set "  suffixOverrides=",">
+        <trim prefix="set " suffixOverrides=",">
             <if test="uNickname!=null">
                 u_nickname = #{uNickname},
             </if>
@@ -24,4 +24,34 @@
         </trim>
         where u_id = #{uId}
     </update>
+
+    <!--得到地址列表-->
+    <select id="selectAddressList" resultMap="selectAddressList, selectAddressListTotal">
+         select SQL_CALC_FOUND_ROWS a_id, a_details, a_university, a_create_time,a_user_default,
+          a_user_id from tb_address where a_user_id = #{userId}
+         limit #{pageNum}, #{pageSize};
+         SELECT FOUND_ROWS() as totalNum;
+    </select>
+    <resultMap id="selectAddressList" type="com.itheima.entity.TbAddress" autoMapping="true">
+    </resultMap>
+    <resultMap id="selectAddressListTotal" type="Integer">
+        <result column="totalNum"></result>
+    </resultMap>
+    <!--更新地址-->
+    <update id="updateAddress">
+        update tb_address set a_details = #{details}, a_university = #{university}
+        where a_id = #{addressId}
+    </update>
+    <!--新增地址-->
+    <insert id="insertAddress">
+        insert into tb_address(a_details, a_university, a_create_time, a_user_id,a_user_default) values(#{aDetails}, #{aUniversity}, #{aCreateTime},#{aUserId},#{aUserDefault})
+    </insert>
+    <!--设置用户默认地址-->
+    <update id="updateUserDefault">
+        update tb_address set a_user_default = 0 where a_user_id = #{userId};
+        update tb_address set a_user_default = 1 where a_id = #{addressId};
+    </update>
+    <delete id="deleteAddress">
+        delete from tb_address where a_id = #{addressId}
+    </delete>
 </mapper>

@@ -4,7 +4,7 @@ import com.itheima.common.Result;
 import com.itheima.common.redis.JedisUtil;
 import com.itheima.common.utils.CommonUtils;
 import com.itheima.common.validator.DTOValidatorAnnotation;
-import com.itheima.user.dto.UpdateUserDTO;
+import com.itheima.user.dto.*;
 import com.itheima.user.pojo.User;
 import com.itheima.user.pojo.UserOrdinary;
 import com.itheima.user.service.UserPersonService;
@@ -59,6 +59,40 @@ public class UserPersonInfoController {
     Result updateUserInfo(@RequestBody UpdateUserDTO updateUserDTO) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
 
         userPersonService.updateUserInfo(updateUserDTO);
+        return Result.ok();
+    }
+    //地址列表
+    @GetMapping("/address")
+    @DTOValidatorAnnotation
+    Result address(AddressDTO addressDTO){
+        return Result.ok(userPersonService.selectAddressList(addressDTO));
+    }
+    //新增地址
+    @PostMapping("/address")
+    @DTOValidatorAnnotation
+    Result address(@RequestBody InsertAddressDTO insertAddressDTO){
+        userPersonService.insertAddress(insertAddressDTO);
+        return Result.ok();
+    }
+    //更新地址
+    @PutMapping("/address")
+    @DTOValidatorAnnotation
+    Result address(@RequestBody UpdateAddressDTO updateAddressDTO){
+        userPersonService.updateAddress(updateAddressDTO);
+        return Result.ok();
+    }
+    //更新默认地址
+    @PutMapping("/address/default")
+    @DTOValidatorAnnotation
+    Result addressDefault(@RequestBody AddressDefaultDTO addressDefaultDTO){
+        userPersonService.updateUserDefault(addressDefaultDTO.getAddressId());
+        return Result.ok();
+    }
+    //删除地址
+    @DeleteMapping("/address")
+    @DTOValidatorAnnotation
+    Result address(@RequestBody AddressDefaultDTO addressDefaultDTO){
+        userPersonService.deleteAddress(addressDefaultDTO.getAddressId());
         return Result.ok();
     }
 }

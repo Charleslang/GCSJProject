@@ -1,77 +1,64 @@
 package com.itheima.entity;
 
 
+import java.sql.Date;
+
 public class TbAddress {
 
   private Integer aId;
   private String aDetails;
   private String aUniversity;
   private java.sql.Date aCreateTime;
-  private Integer aIsDelete;
-  private Integer aUserId;
-  private Integer aUserType;
+  private String aUserId;
+  private Integer aUserDefault;
 
+  public Integer getaUserDefault() {
+    return aUserDefault;
+  }
 
-  public Integer getAId() {
+  public void setaUserDefault(Integer aUserDefault) {
+    this.aUserDefault = aUserDefault;
+  }
+
+  public Integer getaId() {
     return aId;
   }
 
-  public void setAId(Integer aId) {
+  public void setaId(Integer aId) {
     this.aId = aId;
   }
 
-
-  public String getADetails() {
+  public String getaDetails() {
     return aDetails;
   }
 
-  public void setADetails(String aDetails) {
+  public void setaDetails(String aDetails) {
     this.aDetails = aDetails;
   }
 
-
-  public String getAUniversity() {
+  public String getaUniversity() {
     return aUniversity;
   }
 
-  public void setAUniversity(String aUniversity) {
+  public void setaUniversity(String aUniversity) {
     this.aUniversity = aUniversity;
   }
 
-
-  public java.sql.Date getACreateTime() {
+  public Date getaCreateTime() {
     return aCreateTime;
   }
 
-  public void setACreateTime(java.sql.Date aCreateTime) {
+  public void setaCreateTime(Date aCreateTime) {
     this.aCreateTime = aCreateTime;
   }
 
 
-  public Integer getAIsDelete() {
-    return aIsDelete;
-  }
-
-  public void setAIsDelete(Integer aIsDelete) {
-    this.aIsDelete = aIsDelete;
-  }
-
-
-  public Integer getAUserId() {
+  public String getaUserId() {
     return aUserId;
   }
 
-  public void setAUserId(Integer aUserId) {
+  public void setaUserId(String aUserId) {
     this.aUserId = aUserId;
-  }
-
-
-  public Integer getAUserType() {
-    return aUserType;
-  }
-
-  public void setAUserType(Integer aUserType) {
-    this.aUserType = aUserType;
   }
 
 }
