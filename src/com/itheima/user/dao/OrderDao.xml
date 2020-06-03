@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.user.dao.OrderDao">
+
+    <insert id="insertOrder" parameterType="com.itheima.entity.TbOrder" useGeneratedKeys="true" keyProperty="orderId">
+        insert into
+        tb_order(pay_price,goods_num,order_time,pay_time,order_status,user_id,user_type,user_nickname,user_addr,goods_price,goods_name)
+        values
+        (#{payPrice},#P{goodsNum},#{orderTime},null,0,#{userId},#{userType},#{userNickname},#{userAddr},#{goodsPrice},#{goodsName})
+    </insert>
+
+    <update id="updateOrderStatus" parameterType="com.itheima.user.dto.UpdateOrderDTO">
+        update tb_order set pay_time=#{payTime},order_status=1 where order_id=#{orderId}
+    </update>
+
+</mapper>
