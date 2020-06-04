@@ -10,6 +10,6 @@
 <head>
 </head>
 <body>
-   <jsp:forward page="/WEB-INF/jsp/login.jsp"/>
+   <input type="button" value="chijiji">
 </body>
 </html>
