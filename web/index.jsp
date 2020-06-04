@@ -10,6 +10,6 @@
 <head>
 </head>
 <body>
-   chijiji
+   <input type="button" value="chijiji">
 </body>
 </html>
