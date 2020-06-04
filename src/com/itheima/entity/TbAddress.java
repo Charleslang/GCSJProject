@@ -7,18 +7,12 @@ public class TbAddress {
 
   private Integer aId;
   private String aDetails;
-  private String aUniversity;
+  private String aPhone;
   private java.sql.Date aCreateTime;
   private String aUserId;
   private Integer aUserDefault;
+  private String aUsername;
 
-  public Integer getaUserDefault() {
-    return aUserDefault;
-  }
-
-  public void setaUserDefault(Integer aUserDefault) {
-    this.aUserDefault = aUserDefault;
-  }
 
   public Integer getaId() {
     return aId;
@@ -36,12 +30,12 @@ public class TbAddress {
     this.aDetails = aDetails;
   }
 
-  public String getaUniversity() {
-    return aUniversity;
+  public String getaPhone() {
+    return aPhone;
   }
 
-  public void setaUniversity(String aUniversity) {
-    this.aUniversity = aUniversity;
+  public void setaPhone(String aPhone) {
+    this.aPhone = aPhone;
   }
 
   public Date getaCreateTime() {
@@ -52,7 +46,6 @@ public class TbAddress {
     this.aCreateTime = aCreateTime;
   }
 
-
   public String getaUserId() {
     return aUserId;
   }
@@ -61,4 +54,19 @@ public class TbAddress {
     this.aUserId = aUserId;
   }
 
+  public Integer getaUserDefault() {
+    return aUserDefault;
+  }
+
+  public void setaUserDefault(Integer aUserDefault) {
+    this.aUserDefault = aUserDefault;
+  }
+
+  public String getaUsername() {
+    return aUsername;
+  }
+
+  public void setaUsername(String aUsername) {
+    this.aUsername = aUsername;
+  }
 }

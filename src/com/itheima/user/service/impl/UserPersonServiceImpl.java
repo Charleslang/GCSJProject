@@ -93,10 +93,11 @@ public class UserPersonServiceImpl implements UserPersonService {
     public void insertAddress(InsertAddressDTO insertAddressDTO) {
         TbAddress tbAddress = new TbAddress();
         tbAddress.setaDetails(insertAddressDTO.getDetails());
-        tbAddress.setaUniversity(insertAddressDTO.getUniversity());
 
         tbAddress.setaCreateTime(new Date(System.currentTimeMillis()));
         tbAddress.setaUserDefault(0);
+        tbAddress.setaPhone(insertAddressDTO.getPhone());
+        tbAddress.setaUsername(insertAddressDTO.getUsername());
         User user = CommonUtils.getCurrentUser(jedisUtil);
         if (user instanceof UserOrdinary) {
             tbAddress.setaUserId(((UserOrdinary) user).getmUserId() + "");

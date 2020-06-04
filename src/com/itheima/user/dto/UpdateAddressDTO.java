@@ -1,6 +1,7 @@
 package com.itheima.user.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class UpdateAddressDTO {
     /**
@@ -9,14 +10,20 @@ public class UpdateAddressDTO {
     @NotBlank(message = "详细地址不能为空")
     private String details;
     /**
-     * 所在大学
+     * 姓名
      */
-    @NotBlank(message = "所在大学不能为空")
-    private String university;
+    @NotBlank(message = "姓名不能为空")
+    private String username;
+    /**
+     * 手机号
+     */
+    @NotBlank(message = "手机不能为空")
+    private String phone;
 
     /**
      * 地址id
      */
+    @NotNull(message = "地址id不能为空")
     private Integer addressId;
 
     public String getDetails() {
@@ -27,12 +34,20 @@ public class UpdateAddressDTO {
         this.details = details;
     }
 
-    public String getUniversity() {
-        return university;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUniversity(String university) {
-        this.university = university;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getAddressId() {

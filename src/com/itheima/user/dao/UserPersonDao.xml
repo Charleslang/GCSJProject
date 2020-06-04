@@ -27,7 +27,7 @@
 
     <!--得到地址列表-->
     <select id="selectAddressList" resultMap="selectAddressList, selectAddressListTotal">
-         select SQL_CALC_FOUND_ROWS a_id, a_details, a_university, a_create_time,a_user_default,
+         select SQL_CALC_FOUND_ROWS a_id, a_details,a_phone, a_username, a_create_time,a_user_default,
           a_user_id from tb_address where a_user_id = #{userId}
          limit #{pageNum}, #{pageSize};
          SELECT FOUND_ROWS() as totalNum;
@@ -39,12 +39,12 @@
     </resultMap>
     <!--更新地址-->
     <update id="updateAddress">
-        update tb_address set a_details = #{details}, a_university = #{university}
+        update tb_address set a_details = #{details}, a_phone=#{phone}, a_username=#{username}
         where a_id = #{addressId}
     </update>
     <!--新增地址-->
     <insert id="insertAddress">
-        insert into tb_address(a_details, a_university, a_create_time, a_user_id,a_user_default) values(#{aDetails}, #{aUniversity}, #{aCreateTime},#{aUserId},#{aUserDefault})
+        insert into tb_address(a_details, a_create_time, a_user_id,a_user_default, a_phone, a_username) values(#{aDetails}, #{aCreateTime},#{aUserId},#{aUserDefault}, #{aPhone}, #{aUsername})
     </insert>
     <!--设置用户默认地址-->
     <update id="updateUserDefault">

@@ -62,34 +62,34 @@ public class UserPersonInfoController {
         return Result.ok();
     }
     //地址列表
-    @GetMapping("/address")
+    @GetMapping("/addresses")
     @DTOValidatorAnnotation
     Result address(AddressDTO addressDTO){
         return Result.ok(userPersonService.selectAddressList(addressDTO));
     }
     //新增地址
-    @PostMapping("/address")
+    @PostMapping("/addresses")
     @DTOValidatorAnnotation
     Result address(@RequestBody InsertAddressDTO insertAddressDTO){
         userPersonService.insertAddress(insertAddressDTO);
         return Result.ok();
     }
     //更新地址
-    @PutMapping("/address")
+    @PutMapping("/addresses")
     @DTOValidatorAnnotation
     Result address(@RequestBody UpdateAddressDTO updateAddressDTO){
         userPersonService.updateAddress(updateAddressDTO);
         return Result.ok();
     }
     //更新默认地址
-    @PutMapping("/address/default")
+    @PutMapping("/addresses/default")
     @DTOValidatorAnnotation
     Result addressDefault(@RequestBody AddressDefaultDTO addressDefaultDTO){
         userPersonService.updateUserDefault(addressDefaultDTO.getAddressId());
         return Result.ok();
     }
     //删除地址
-    @DeleteMapping("/address")
+    @DeleteMapping("/addresses")
     @DTOValidatorAnnotation
     Result address(@RequestBody AddressDefaultDTO addressDefaultDTO){
         userPersonService.deleteAddress(addressDefaultDTO.getAddressId());

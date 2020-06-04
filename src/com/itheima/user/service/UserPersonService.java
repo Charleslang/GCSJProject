@@ -26,14 +26,14 @@ public interface UserPersonService {
 
     /**
      * 功能描述: 更新收货地址
-     * @param updateAddressDTO 包含详细地址和地址id和所在大学
+     * @param updateAddressDTO 包含详细地址和地址id和名字电话
      * @return void
      */
     void updateAddress(UpdateAddressDTO updateAddressDTO);
 
     /**
      * 功能描述: 新增地址
-     * @param insertAddressDTO 包含详细地址，大学
+     * @param insertAddressDTO 包含详细地址，名字电话
      * @return void
      */
     void insertAddress(InsertAddressDTO insertAddressDTO);
