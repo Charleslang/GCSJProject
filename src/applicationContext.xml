@@ -47,13 +47,12 @@
     </bean>
     <!-- 配置mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.itheima.user.dao"/>
+		<property name="basePackage" value="com.itheima.*.dao"/>
 	</bean>
+
     <!-- 扫描Service --> 
     <context:component-scan base-package="com.itheima.user.service" />
-
-
-
+	<context:component-scan base-package="com.itheima.web.service" />
 
 	<context:component-scan base-package="com.itheima.common.config" />
 	<context:component-scan base-package="com.itheima.common.redis" />
