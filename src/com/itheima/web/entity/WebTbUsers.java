@@ -8,6 +8,7 @@ package com.itheima.web.entity;
 public class WebTbUsers {
     private Integer uId;
     private String uNickname;
+    private String uAccount;
     private String uPassword;
     private String uGender;
     private String uSalt;
@@ -33,7 +34,6 @@ public class WebTbUsers {
     public void setUNickname(String uNickname) {
         this.uNickname = uNickname;
     }
-
 
 
     public String getUPassword() {
@@ -96,5 +96,13 @@ public class WebTbUsers {
 
     public void setULoginTime(Integer uLoginTime) {
         this.uLoginTime = uLoginTime;
+    }
+
+    public String getuAccount() {
+        return uAccount;
+    }
+
+    public void setuAccount(String uAccount) {
+        this.uAccount = uAccount;
     }
 }
