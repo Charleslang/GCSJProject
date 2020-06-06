@@ -1,7 +1,7 @@
 package com.itheima.web.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 商品实体类
@@ -14,9 +14,10 @@ public class WebTbGoods implements Serializable {
     private Integer gId;
     private String gName;
     private Float gPrice;
+    private Integer gNumber;
     private Integer gType;
     private String gPhoto;
-    private Date gAddTime;
+    private String gAddTime;
     private WebTbGoodsType webTbGoodsType;
 
     public Integer getgId() {
@@ -43,6 +44,14 @@ public class WebTbGoods implements Serializable {
         this.gPrice = gPrice;
     }
 
+    public Integer getgNumber() {
+        return gNumber;
+    }
+
+    public void setgNumber(Integer gNumber) {
+        this.gNumber = gNumber;
+    }
+
     public Integer getgType() {
         return gType;
     }
@@ -59,11 +68,11 @@ public class WebTbGoods implements Serializable {
         this.gPhoto = gPhoto;
     }
 
-    public Date getgAddTime() {
+    public String getgAddTime() {
         return gAddTime;
     }
 
-    public void setgAddTime(Date gAddTime) {
+    public void setgAddTime(String gAddTime) {
         this.gAddTime = gAddTime;
     }
 
@@ -81,10 +90,11 @@ public class WebTbGoods implements Serializable {
                 "gId=" + gId +
                 ", gName='" + gName + '\'' +
                 ", gPrice=" + gPrice +
+                ", gNumber=" + gNumber +
                 ", gType=" + gType +
                 ", gPhoto='" + gPhoto + '\'' +
-                ", gAddTime=" + gAddTime +
-                ", webTbGoodsType=" + webTbGoodsType +
+                ", gAddTime='" + gAddTime + '\'' +
+                ", webTbGoodsType=" + webTbGoodsType.toString() +
                 '}';
     }
 }
