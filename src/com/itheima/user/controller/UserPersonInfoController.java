@@ -40,9 +40,6 @@ public class UserPersonInfoController {
     Result selectPersonalInfo() {
         User user = CommonUtils.getCurrentUser(jedisUtil);
         HashMap res = new HashMap();
-        System.out.println(user instanceof UserOrdinary);
-        System.out.println(user);
-        System.out.println((UserOrdinary)user);
         if (user instanceof UserOrdinary) {
             //标识普通用户
             res.put("userType", 1);
