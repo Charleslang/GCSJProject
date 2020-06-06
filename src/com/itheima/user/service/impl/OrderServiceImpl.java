@@ -4,9 +4,9 @@ import com.itheima.entity.TbOrder;
 import com.itheima.user.dao.OrderDao;
 import com.itheima.user.dto.UpdateOrderDTO;
 import com.itheima.user.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
+    @Resource
     private OrderDao orderDao;
 
     @Override

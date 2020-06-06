@@ -1,27 +1,20 @@
-package com.itheima.entity;
+package com.itheima.user.dto;
+
+import com.itheima.entity.TbGoodsType;
 
 import java.sql.Date;
 
 /**
  * @author: Dai Junfeng
- * @create: 2020-06-02
+ * @create: 2020-06-06
  **/
-public class TbGoods {
+public class GoodsDTO {
     private Integer gId;
     private String gName;
     private Float gPrice;
-    private Integer gNumber;
+    private Integer selectNum = 0;
     private String gPhoto;
-    private Date gAddTime;
     private TbGoodsType tbGoodsType;
-
-    public TbGoodsType getTbGoodsType() {
-        return tbGoodsType;
-    }
-
-    public void setTbGoodsType(TbGoodsType tbGoodsType) {
-        this.tbGoodsType = tbGoodsType;
-    }
 
     public Integer getgId() {
         return gId;
@@ -47,12 +40,12 @@ public class TbGoods {
         this.gPrice = gPrice;
     }
 
-    public Integer getgNumber() {
-        return gNumber;
+    public Integer getSelectNum() {
+        return selectNum;
     }
 
-    public void setgNumber(Integer gNumber) {
-        this.gNumber = gNumber;
+    public void setSelectNum(Integer selectNum) {
+        this.selectNum = selectNum;
     }
 
     public String getgPhoto() {
@@ -63,23 +56,22 @@ public class TbGoods {
         this.gPhoto = gPhoto;
     }
 
-    public Date getgAddTime() {
-        return gAddTime;
+    public TbGoodsType getTbGoodsType() {
+        return tbGoodsType;
     }
 
-    public void setgAddTime(Date gAddTime) {
-        this.gAddTime = gAddTime;
+    public void setTbGoodsType(TbGoodsType tbGoodsType) {
+        this.tbGoodsType = tbGoodsType;
     }
 
     @Override
     public String toString() {
-        return "TbGoods{" +
+        return "GoodsDTO{" +
                 "gId=" + gId +
                 ", gName='" + gName + '\'' +
                 ", gPrice=" + gPrice +
-                ", gNumber=" + gNumber +
+                ", selectNum=" + selectNum +
                 ", gPhoto='" + gPhoto + '\'' +
-                ", gAddTime=" + gAddTime +
                 ", tbGoodsType=" + tbGoodsType +
                 '}';
     }

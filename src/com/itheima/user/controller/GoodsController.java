@@ -22,8 +22,9 @@ public class GoodsController {
     private GoodsServiceImpl goodsService;
 
     @GetMapping("/goods")
-    public List<TbGoods> getAllGoods(){
-        List<TbGoods> tbGoodsList = goodsService.getAllGoods();
+    public List<TbGoodsType> getAllGoods(){
+        List<TbGoodsType> tbGoodsList = goodsService.getAllGoods();
+        System.out.println("进入controller...");
         return tbGoodsList;
     }
 

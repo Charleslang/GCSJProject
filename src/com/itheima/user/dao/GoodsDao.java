@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface GoodsDao {
 
-    List<TbGoods> getAllGoods();
+    List<TbGoodsType> getAllGoods();
     List<TbGoodsType> getAllGoodsTypes();
 }

@@ -11,6 +11,6 @@ import java.util.List;
  **/
 public interface GoodsService {
 
-    List<TbGoods> getAllGoods();
+    List<TbGoodsType> getAllGoods();
     List<TbGoodsType> getAllGoodsTypes();
 }
