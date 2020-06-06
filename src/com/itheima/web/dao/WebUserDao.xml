@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itheima.web.dao.WebGoodsDao">
+<mapper namespace="com.itheima.web.dao.WebUserDao">
 
-    <select id="getalluser" resultType="com.itheima.web.entity.WebTbusers">
+    <select id="getalluser" resultType="com.itheima.web.entity.WebTbUsers">
          select u_id as uId, u_nickname as uNickname,u_account as uAccount,
          u_password as uPassword, u_gender as uGender, u_salt as uSalt, u_email as uEmail,
          u_profile as uProfile, u_create_time as uCreateTime, u_login_time as uLoginTime

@@ -4,11 +4,22 @@
 <mapper namespace="com.itheima.user.dao.UserOrderDao" >
   <!--订单列表-->
     <select id="selectOrderList" resultMap="selectOrderList, selectOrderListTotal">
-        select SQL_CALC_FOUND_ROWS order_id, pay_price, goods_num, order_time, pay_time, order_status, user_id, user_type, user_nickname, user_addr, goods_name, goods_price from tb_order
+        select SQL_CALC_FOUND_ROWS order_id, pay_price, goods_num, goods_price,store_name,
+         if(order_status=1,'已支付','未支付') as status,
+         user_id, user_nickname, user_addr, goods_name, goods_price from tb_order where user_id = #{userId}
         limit #{pageNum}, #{pageSize};
  SELECT FOUND_ROWS() as totalNum;
     </select>
-    <resultMap id="selectOrderList" type="com.itheima.entity.TbOrder">
+    <resultMap id="selectOrderList" type="com.itheima.user.pojo.UserOrder">
+        <id property="orderId" column="order_id"></id>
+        <result property="orderStatus" column="status"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="totalPrice" column="pay_price"></result>
+        <result property="storeName" column="store_name"></result>
+        <result property="goodsName" column="goods_name"></result>
+        <result property="goodsNum" column="goods_num"></result>
+        <result property="goodsImage" column="goods_price"></result>
+        <result property="userId" column="user_id"></result>
     </resultMap>
     <resultMap id="selectOrderListTotal" type="Integer">
         <result column="totalNum"></result>
