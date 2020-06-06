@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx 
     http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context-4.3.xsd
-    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	<!-- 读取db.properties -->
-	<context:property-placeholder location="classpath:db.properties"/>
-	<!-- 配置数据源 -->
-	<bean id="dataSource"
-		  class="org.apache.commons.dbcp2.BasicDataSource">
+    <!-- 读取db.properties -->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!-- 配置数据源 -->
+	<bean id="dataSource" 
+                           class="org.apache.commons.dbcp2.BasicDataSource">
 		<!--数据库驱动 -->
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<!--连接数据库的url -->
@@ -32,35 +32,34 @@
 		<!--初始化连接数  -->
 		<property name="initialSize" value="${jdbc.initialSize}" />
 	</bean>
-	<!-- 事务管理器，依赖于数据源 -->
+     <!-- 事务管理器，依赖于数据源 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<!-- 开启事务注解 -->
+	</bean>	
+    <!-- 开启事务注解 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	<!-- 配置MyBatis工厂SqlSessionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!--注入数据源 -->
-		<property name="dataSource" ref="dataSource" />
-		<!--指定核MyBatis心配置文件位置 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-	</bean>
-	<!-- 配置mapper扫描器 -->
+    <!-- 配置MyBatis工厂SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+         <!--注入数据源 -->
+         <property name="dataSource" ref="dataSource" />
+         <!--指定核MyBatis心配置文件位置 -->
+          <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+    <!-- 配置mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.itheima.user.dao"/>
 	</bean>
-	<!-- 扫描Service -->
-	<context:component-scan base-package="com.itheima.user.service" />
 
-
-
+    <!-- 扫描Service -->
+    <context:component-scan base-package="com.itheima.user.service" />
+	<context:component-scan base-package="com.itheima.web.service" />
 
 	<context:component-scan base-package="com.itheima.common.config" />
 	<context:component-scan base-package="com.itheima.common.redis" />
 	<!-- 初始化Jedis连接池-->
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!--最大连接数, 默认8个-->
-		<property name="maxTotal" value="80" />
+		<property name="maxTotal" value="50" />
 		<!--最大空闲连接数, 默认8-->
 		<property name="maxIdle" value="10" />
 		<!--连接时的最大等待毫秒数-->
@@ -69,10 +68,9 @@
 		<property name="testOnBorrow" value="true" />
 	</bean>
 	<!-- 把jedisPool交给spring管理 -->
-	<bean class="redis.clients.jedis.JedisPool">
+	<bean   class="redis.clients.jedis.JedisPool" >
 		<constructor-arg name="poolConfig" ref="poolConfig"></constructor-arg>
-		<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
-<!--		<constructor-arg name="host" value="139.9.87.17"></constructor-arg>-->
+		<constructor-arg name="host" value="139.9.87.17"></constructor-arg>
 		<constructor-arg name="port" value="6379"></constructor-arg>
 		<constructor-arg name="timeout" value="600"></constructor-arg>
 		<constructor-arg name="password" value="redis"></constructor-arg>
