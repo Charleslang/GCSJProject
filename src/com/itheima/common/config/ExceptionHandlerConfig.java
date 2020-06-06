@@ -22,7 +22,7 @@ public class ExceptionHandlerConfig {
 
     @ExceptionHandler(Exception.class)
     public Result handlerException(Exception e) {
-        e.printStackTrace();
+        System.out.println(e.getMessage());
         return Result.error(500, "未知异常");
     }
     @ExceptionHandler(RRException.class)

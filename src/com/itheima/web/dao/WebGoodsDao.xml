@@ -3,9 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.web.dao.WebGoodsDao">
-
-    <select id="getAllGoods" resultType="com.itheima.web.entity.WebTbGoods">
-        select * from tb_goods
+    <resultMap id="webGoodsMap" type="com.itheima.web.entity.WebTbGoods">
+        <id property="gId" column="g_id"></id>
+        <result property="gName" column="g_name"></result>
+        <result property="gPrice" column="g_price"></result>
+        <result property="gNumber" column="g_number"></result>
+        <result property="gType" column="g_type"></result>
+        <result property="gPhoto" column="g_photo"></result>
+        <result property="gAddTime" column="g_add_time"></result>
+        <!--一对一的映射关系，colume表示用什么字段获取-->
+        <association property="webTbGoodsType" column="g_type" javaType="com.itheima.web.entity.WebTbGoodsType">
+            <id property="typeId" column="type_id"></id>
+            <result property="typeName" column="type_name"></result>
+        </association>
+    </resultMap>
+    <!--resultType="com.itheima.web.entity.WebTbGoods" select * from tb_goods-->
+    <select id="getAllGoods" resultMap="webGoodsMap">
+            select * from tb_goods,tb_goods_type where g_type = type_id
     </select>
 
 

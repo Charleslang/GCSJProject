@@ -47,10 +47,10 @@
     </bean>
     <!-- 配置mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.itheima.*.dao"/>
+		<property name="basePackage" value="com.itheima.user.dao,com.itheima.web.dao "/>
 	</bean>
 
-    <!-- 扫描Service --> 
+    <!-- 扫描Service -->
     <context:component-scan base-package="com.itheima.user.service" />
 	<context:component-scan base-package="com.itheima.web.service" />
 
@@ -72,6 +72,8 @@
 		<constructor-arg name="poolConfig" ref="poolConfig"></constructor-arg>
 		<constructor-arg name="host" value="139.9.87.17"></constructor-arg>
 		<constructor-arg name="port" value="6379"></constructor-arg>
+		<constructor-arg name="timeout" value="600"></constructor-arg>
+		<constructor-arg name="password" value="redis"></constructor-arg>
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 

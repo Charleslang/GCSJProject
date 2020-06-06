@@ -19,6 +19,19 @@ public class OrderDTO {
     @NotNull(message = "订单状态不能为空")
     private Integer orderStatus;
 
+    /**
+     * 用户id
+     */
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public Integer getPageNum() {
         return pageNum;
     }
