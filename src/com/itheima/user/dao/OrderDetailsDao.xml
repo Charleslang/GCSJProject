@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.user.dao.OrderDetailsDao">
+
+    <insert id="insertOrderDetail" parameterType="list">
+        insert into tb_order_details(goods_id,order_id,goods_price,goods_name,goods_img,goods_num) values
+        <if test="list != null and list.size > 0">
+            <foreach collection="list" item="item" separator=",">
+                (#{item.goodsId},#{item.orderId},#{item.goodsPrice},#{item.goodsName},#{item.goodsImg},#{item.goodsNum})
+            </foreach>
+        </if>
+    </insert>
+</mapper>

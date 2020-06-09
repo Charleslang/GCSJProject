@@ -1,6 +1,6 @@
 package com.itheima.user.service;
 
-import com.itheima.entity.TbOrder;
+import com.itheima.user.dto.InsertOrderDTO;
 import com.itheima.user.dto.UpdateOrderDTO;
 
 import java.util.Map;
@@ -11,6 +11,6 @@ import java.util.Map;
  **/
 public interface OrderService {
 
-    Map<String,Integer> insertOrder(TbOrder tbOrder);
+    InsertOrderDTO insertOrder(InsertOrderDTO insertOrderDTO);
     Map<String,Boolean> updateOrderStatus(UpdateOrderDTO updateOrderDTO);
 }

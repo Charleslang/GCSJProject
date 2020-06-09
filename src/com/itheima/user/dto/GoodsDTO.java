@@ -12,6 +12,7 @@ public class GoodsDTO {
     private Integer gId;
     private String gName;
     private Float gPrice;
+    private Integer gNumber;
     private Integer selectNum = 0;
     private String gPhoto;
     private TbGoodsType tbGoodsType;
@@ -62,6 +63,14 @@ public class GoodsDTO {
 
     public void setTbGoodsType(TbGoodsType tbGoodsType) {
         this.tbGoodsType = tbGoodsType;
+    }
+
+    public Integer getgNumber() {
+        return gNumber;
+    }
+
+    public void setgNumber(Integer gNumber) {
+        this.gNumber = gNumber;
     }
 
     @Override

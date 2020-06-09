@@ -7,7 +7,6 @@ public class TbOrder {
 
   private Integer orderId;
   private double payPrice;
-  private Integer goodsNum;
   private java.sql.Timestamp orderTime;
   private java.sql.Timestamp payTime;
   private Integer orderStatus;
@@ -15,9 +14,24 @@ public class TbOrder {
   private Integer userType;
   private String userNickname;
   private String userAddr;
-  private String goodsName;
-  private double goodsPrice;
+  private String goodsImage;
+  private String storeName;
 
+    public String getGoodsImage() {
+        return goodsImage;
+    }
+
+    public void setGoodsImage(String goodsImage) {
+        this.goodsImage = goodsImage;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -33,14 +47,6 @@ public class TbOrder {
 
     public void setPayPrice(double payPrice) {
         this.payPrice = payPrice;
-    }
-
-    public Integer getGoodsNum() {
-        return goodsNum;
-    }
-
-    public void setGoodsNum(Integer goodsNum) {
-        this.goodsNum = goodsNum;
     }
 
     public Timestamp getOrderTime() {
@@ -99,19 +105,4 @@ public class TbOrder {
         this.userAddr = userAddr;
     }
 
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public double getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(double goodsPrice) {
-        this.goodsPrice = goodsPrice;
-    }
 }
