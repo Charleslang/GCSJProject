@@ -24,10 +24,10 @@ public class OrderController {
     private OrderServiceImpl orderService;
 
     @PostMapping("/insert")
-    public InsertOrderDTO insertOrder(@RequestBody InsertOrderDTO insertOrderDTO){
+    public Integer insertOrder(@RequestBody InsertOrderDTO insertOrderDTO){
         System.out.println("进入订单controller");
-        InsertOrderDTO order = orderService.insertOrder(insertOrderDTO);
-        return order;
+        Integer orderId = orderService.insertOrder(insertOrderDTO);
+        return orderId;
     }
 
     @PostMapping("/update")

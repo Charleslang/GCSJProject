@@ -77,4 +77,18 @@ public class OrderDetailsDTO {
     public void setStockNum(Integer stockNum) {
         this.stockNum = stockNum;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDetailsDTO{" +
+                "detailsId=" + detailsId +
+                ", goodsId=" + goodsId +
+                ", orderId=" + orderId +
+                ", goodsPrice=" + goodsPrice +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsImg='" + goodsImg + '\'' +
+                ", goodsNum=" + goodsNum +
+                ", stockNum=" + stockNum +
+                '}';
+    }
 }

@@ -11,11 +11,11 @@ import java.util.List;
 public class InsertOrderDTO {
 
     private Integer orderId;
+    private Float payPrice;
     private String userId;
     private Integer userType;
     private String userNickname;
     private String userAddr;
-    private String goodsImage;
     private String storeName;
     private String orderNo;
     private List<OrderDetailsDTO> orderDetailsList;
@@ -24,12 +24,12 @@ public class InsertOrderDTO {
 
     }
 
-    public InsertOrderDTO(String userId, Integer userType, String userNickname, String userAddr, String goodsImage, String storeName, String orderNo, List<OrderDetailsDTO> orderDetailsList) {
+    public InsertOrderDTO(Float payPrice, String userId, Integer userType, String userNickname, String userAddr, String storeName, String orderNo, List<OrderDetailsDTO> orderDetailsList) {
+        this.payPrice = payPrice;
         this.userId = userId;
         this.userType = userType;
         this.userNickname = userNickname;
         this.userAddr = userAddr;
-        this.goodsImage = goodsImage;
         this.storeName = storeName;
         this.orderNo = orderNo;
         this.orderDetailsList = orderDetailsList;
@@ -41,6 +41,14 @@ public class InsertOrderDTO {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public Float getPayPrice() {
+        return payPrice;
+    }
+
+    public void setPayPrice(Float payPrice) {
+        this.payPrice = payPrice;
     }
 
     public String getUserId() {
@@ -75,14 +83,6 @@ public class InsertOrderDTO {
         this.userAddr = userAddr;
     }
 
-    public String getGoodsImage() {
-        return goodsImage;
-    }
-
-    public void setGoodsImage(String goodsImage) {
-        this.goodsImage = goodsImage;
-    }
-
     public String getStoreName() {
         return storeName;
     }
@@ -105,5 +105,20 @@ public class InsertOrderDTO {
 
     public void setOrderDetailsList(List<OrderDetailsDTO> orderDetailsList) {
         this.orderDetailsList = orderDetailsList;
+    }
+
+    @Override
+    public String toString() {
+        return "InsertOrderDTO{" +
+                "orderId=" + orderId +
+                ", payPrice=" + payPrice +
+                ", userId='" + userId + '\'' +
+                ", userType=" + userType +
+                ", userNickname='" + userNickname + '\'' +
+                ", userAddr='" + userAddr + '\'' +
+                ", storeName='" + storeName + '\'' +
+                ", orderNo='" + orderNo + '\'' +
+                ", orderDetailsList=" + orderDetailsList +
+                '}';
     }
 }

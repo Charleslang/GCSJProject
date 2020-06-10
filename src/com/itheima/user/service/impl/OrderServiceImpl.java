@@ -4,10 +4,7 @@ import com.itheima.entity.TbOrderDetails;
 import com.itheima.user.dao.GoodsDao;
 import com.itheima.user.dao.OrderDao;
 import com.itheima.user.dao.OrderDetailsDao;
-import com.itheima.user.dto.InsertOrderDTO;
-import com.itheima.user.dto.OrderDetailsDTO;
-import com.itheima.user.dto.UpdateGoodsDTO;
-import com.itheima.user.dto.UpdateOrderDTO;
+import com.itheima.user.dto.*;
 import com.itheima.user.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,9 +33,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public InsertOrderDTO insertOrder(InsertOrderDTO insertOrderDTO) {
+    public Integer insertOrder(InsertOrderDTO insertOrderDTO) {
         List<OrderDetailsDTO> orderDetailsList = insertOrderDTO.getOrderDetailsList();
         List<UpdateGoodsDTO> updateGoodsDTOList = new ArrayList<>();
+        insertOrderDTO.setOrderNo(String.valueOf(System.currentTimeMillis()));
+        System.out.println("价格："+insertOrderDTO.getPayPrice());
         int insert = orderDao.insertOrder(insertOrderDTO);
         if (insert == 1) {
             System.out.println("订单插入成功");
@@ -56,12 +55,14 @@ public class OrderServiceImpl implements OrderService {
                     if (update == updateGoodsDTOList.size()){
                         System.out.println("商品库存修改成功");
                         System.out.println("库存修改条数->" + update);
-                        return insertOrderDTO;
+                        System.out.println("订单信息如下：");
+                        System.out.println(insertOrderDTO.toString());
+                        return orderId;
                     }
                 }
             }
         }
-        return null;
+        return 0;
     }
 
     @Override
@@ -74,5 +75,11 @@ public class OrderServiceImpl implements OrderService {
             resultMap.put("code", false);
         }
         return resultMap;
+    }
+
+    @Override
+    public PayOrderDTO getOrderById(Integer orderId) {
+        PayOrderDTO order = orderDao.getOrderById(orderId);
+        return order;
     }
 }

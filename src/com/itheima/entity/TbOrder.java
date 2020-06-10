@@ -14,16 +14,8 @@ public class TbOrder {
   private Integer userType;
   private String userNickname;
   private String userAddr;
-  private String goodsImage;
   private String storeName;
 
-    public String getGoodsImage() {
-        return goodsImage;
-    }
-
-    public void setGoodsImage(String goodsImage) {
-        this.goodsImage = goodsImage;
-    }
 
     public String getStoreName() {
         return storeName;
