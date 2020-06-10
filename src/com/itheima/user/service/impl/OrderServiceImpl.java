@@ -1,7 +1,5 @@
 package com.itheima.user.service.impl;
 
-import com.itheima.entity.TbOrderDetails;
-import com.itheima.user.dao.GoodsDao;
 import com.itheima.user.dao.OrderDao;
 import com.itheima.user.dao.OrderDetailsDao;
 import com.itheima.user.dto.*;
@@ -66,20 +64,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Map<String, Boolean> updateOrderStatus(UpdateOrderDTO updateOrderDTO) {
+    public String updateOrderStatus(UpdateOrderDTO updateOrderDTO) {
         int update = orderDao.updateOrderStatus(updateOrderDTO);
-        Map<String,Boolean> resultMap = null;
         if (update == 1) {
-            resultMap.put("code", true);
-        } else {
-            resultMap.put("code", false);
+            return "success";
         }
-        return resultMap;
+        return "fail";
     }
 
     @Override
     public PayOrderDTO getOrderById(Integer orderId) {
         PayOrderDTO order = orderDao.getOrderById(orderId);
         return order;
+    }
+
+    @Override
+    public int getOrderStatus(Integer orderId) {
+        int orderStatus = orderDao.getOrderStatus(orderId);
+        return orderStatus;
     }
 }

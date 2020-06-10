@@ -12,11 +12,15 @@
     </insert>
 
     <update id="updateOrderStatus" parameterType="com.itheima.user.dto.UpdateOrderDTO">
-        update tb_order set pay_time=now(),order_status=1 where order_id=#{orderId}
+        update tb_order set pay_time=#{payTime},order_status=1 where order_id=#{orderId}
     </update>
 
     <select id="getOrderById" parameterType="java.lang.Integer" resultType="com.itheima.user.dto.PayOrderDTO">
         select order_id,pay_price from tb_order where order_id=#{orderId}
+    </select>
+
+    <select id="getOrderStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select order_status from tb_order where order_id=#{orderId}
     </select>
 
 </mapper>

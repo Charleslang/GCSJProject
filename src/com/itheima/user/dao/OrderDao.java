@@ -8,4 +8,5 @@ public interface OrderDao {
     int insertOrder(InsertOrderDTO insertOrderDTO);
     int updateOrderStatus(UpdateOrderDTO updateOrderDTO);
     PayOrderDTO getOrderById(Integer orderId);
+    int getOrderStatus(Integer orderId);
 }

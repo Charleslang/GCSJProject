@@ -30,9 +30,9 @@ public class OrderController {
         return orderId;
     }
 
-    @PostMapping("/update")
-    public Map<String, Boolean> updateOrderStatus(@RequestBody UpdateOrderDTO updateOrderDTO){
-        Map<String, Boolean> resultMap = orderService.updateOrderStatus(updateOrderDTO);
-        return resultMap;
-    }
+//    @PostMapping("/update")
+//    public Map<String, Boolean> updateOrderStatus(@RequestBody UpdateOrderDTO updateOrderDTO){
+//        Map<String, Boolean> resultMap = orderService.updateOrderStatus(updateOrderDTO);
+//        return resultMap;
+//    }
 }

@@ -1,6 +1,7 @@
 package com.itheima.user.dto;
 
-import java.util.Date;
+
+import java.sql.Timestamp;
 
 /**
  * @author: Dai Junfeng
@@ -9,7 +10,7 @@ import java.util.Date;
 public class UpdateOrderDTO {
     private Integer orderId;
     private Float payPrice;
-    private Date payTime;
+    private Timestamp payTime;
 
     public Float getPayPrice() {
         return payPrice;
@@ -27,11 +28,11 @@ public class UpdateOrderDTO {
         this.orderId = orderId;
     }
 
-    public Date getPayTime() {
+    public Timestamp getPayTime() {
         return payTime;
     }
 
-    public void setPayTime(Date payTime) {
+    public void setPayTime(Timestamp payTime) {
         this.payTime = payTime;
     }
 }
