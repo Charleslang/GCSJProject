@@ -5,7 +5,7 @@ import com.itheima.web.entity.WebTbGoods;
 import java.util.List;
 
 /**
- * dao层
+ * 商品管理dao层
  *
  * @author: Lv Bo
  * @create: 2020-06-05
@@ -13,4 +13,12 @@ import java.util.List;
 public interface WebGoodsDao {
 
     List<WebTbGoods> getAllGoods();
+
+    int addGoods(Object o);
+
+    WebTbGoods getGoods(String gId);
+
+    int updateGoods(Object o);
+
+    int deleteGoods(int gId);
 }

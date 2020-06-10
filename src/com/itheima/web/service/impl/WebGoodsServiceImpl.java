@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * service实现层
+ * 商品管理service实现层
  *
  * @author: Lv Bo
  * @create: 2020-06-05
@@ -23,4 +23,26 @@ public class WebGoodsServiceImpl implements WebGoodsService {
     public List<WebTbGoods> getAllGoods() {
         return webGoodsDao.getAllGoods();
     }
+
+    @Override
+    public int addGoods(Object o) {
+        return webGoodsDao.addGoods(o);
+    }
+
+    @Override
+    public WebTbGoods getGoods(String gId) {
+        return webGoodsDao.getGoods(gId);
+    }
+
+    @Override
+    public int updateGoods(Object o) {
+        return webGoodsDao.updateGoods(o);
+    }
+
+    @Override
+    public int deleteGoods(Integer gId) {
+        return webGoodsDao.deleteGoods(gId);
+    }
+
+
 }

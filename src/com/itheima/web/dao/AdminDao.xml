@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.web.dao.AdminDao">
+    <select id="getAdmin" resultType="com.itheima.web.entity.Admin">
+            select * from tb_admin where a_account=#{account}
+    </select>
+</mapper>

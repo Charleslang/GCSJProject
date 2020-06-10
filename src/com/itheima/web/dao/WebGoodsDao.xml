@@ -17,10 +17,28 @@
             <result property="typeName" column="type_name"></result>
         </association>
     </resultMap>
-    <!--resultType="com.itheima.web.entity.WebTbGoods" select * from tb_goods-->
     <select id="getAllGoods" resultMap="webGoodsMap">
-            select * from tb_goods,tb_goods_type where g_type = type_id
+            select * from tb_goods,tb_goods_type where g_type = type_id order by g_id
     </select>
 
+    <insert id="addGoods" parameterType="com.itheima.web.entity.WebTbGoods">
+        insert into tb_goods (g_name,g_price,g_number,g_type,g_photo,g_add_time)
+        values (#{gName},#{gPrice},#{gNumber},#{gType},#{gPhoto},#{gAddTime})
+    </insert>
 
+    <select id="getGoods" resultMap="webGoodsMap">
+        select * from (select * from tb_goods where g_id=#{gId}) a,tb_goods_type where a.g_type = type_id
+    </select>
+
+    <update id="updateGoods" parameterType="com.itheima.web.entity.WebTbGoods">
+        update tb_goods
+        <set>
+            g_name=#{gName},g_price=#{gPrice},g_number=#{gNumber},g_type=#{gType},g_photo=#{gPhoto}
+        </set>
+        where g_id=#{gId}
+    </update>
+
+    <delete id="deleteGoods" parameterType="Integer">
+        delete from tb_goods where g_id=#{gId}
+    </delete>
 </mapper>
