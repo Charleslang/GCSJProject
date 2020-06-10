@@ -17,5 +17,4 @@
 	<aop:aspectj-autoproxy />
 	<bean class="com.itheima.common.validator.AopValidator" />
 
-
 </beans>

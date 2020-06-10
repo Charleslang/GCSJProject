@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.web.dao.WebGoodsTypeDao">
+    <select id="getAllGoodsType" resultType="com.itheima.web.entity.WebTbGoodsType">
+        select * from tb_goods_type
+    </select>
+    <insert id="addGoodsType" parameterType="String">
+        INSERT INTO tb_goods_type(type_name) select #{type}
+        WHERE NOT EXISTS (SELECT * FROM tb_goods_type WHERE type_name=#{type});
+    </insert>
+</mapper>

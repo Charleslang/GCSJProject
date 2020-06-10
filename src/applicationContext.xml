@@ -75,6 +75,14 @@
 		<constructor-arg name="timeout" value="600"></constructor-arg>
 		<constructor-arg name="password" value="redis"></constructor-arg>
 	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为1MB -->
+        <property name="maxUploadSize">
+            <value>1048576</value>
+        </property>
+        <!--设置编码，与jsp页面编码一致-->
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
 </beans>

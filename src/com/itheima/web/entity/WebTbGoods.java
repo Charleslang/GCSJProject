@@ -1,7 +1,6 @@
 package com.itheima.web.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * 商品实体类
