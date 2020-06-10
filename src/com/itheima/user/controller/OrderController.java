@@ -1,6 +1,7 @@
 package com.itheima.user.controller;
 
 import com.itheima.entity.TbOrder;
+import com.itheima.user.dto.InsertOrderDTO;
 import com.itheima.user.dto.UpdateOrderDTO;
 import com.itheima.user.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,10 @@ public class OrderController {
     private OrderServiceImpl orderService;
 
     @PostMapping("/insert")
-    public Map<String, Integer> insertOrder(@RequestBody TbOrder tbOrder){
-        Map<String, Integer> resultMap = orderService.insertOrder(tbOrder);
-        return resultMap;
+    public InsertOrderDTO insertOrder(@RequestBody InsertOrderDTO insertOrderDTO){
+        System.out.println("进入订单controller");
+        InsertOrderDTO order = orderService.insertOrder(insertOrderDTO);
+        return order;
     }
 
     @PostMapping("/update")

@@ -28,9 +28,4 @@ public class GoodsController {
         return tbGoodsList;
     }
 
-    @GetMapping("/goodstypes")
-    public List<TbGoodsType> getAllGoodsTypes(){
-        List<TbGoodsType> tbGoodsTypeList = goodsService.getAllGoodsTypes();
-        return tbGoodsTypeList;
-    }
 }

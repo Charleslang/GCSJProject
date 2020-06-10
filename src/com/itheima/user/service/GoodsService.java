@@ -2,6 +2,7 @@ package com.itheima.user.service;
 
 import com.itheima.entity.TbGoods;
 import com.itheima.entity.TbGoodsType;
+import com.itheima.user.dto.UpdateGoodsDTO;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ import java.util.List;
 public interface GoodsService {
 
     List<TbGoodsType> getAllGoods();
-    List<TbGoodsType> getAllGoodsTypes();
+    int updateGoodsNum(List<UpdateGoodsDTO> list);
 }

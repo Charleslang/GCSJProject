@@ -37,7 +37,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>	
     <!-- 开启事务注解 -->
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <!-- 配置MyBatis工厂SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <!--注入数据源 -->

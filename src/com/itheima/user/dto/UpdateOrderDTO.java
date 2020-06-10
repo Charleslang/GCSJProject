@@ -8,7 +8,16 @@ import java.util.Date;
  **/
 public class UpdateOrderDTO {
     private Integer orderId;
+    private Float payPrice;
     private Date payTime;
+
+    public Float getPayPrice() {
+        return payPrice;
+    }
+
+    public void setPayPrice(Float payPrice) {
+        this.payPrice = payPrice;
+    }
 
     public Integer getOrderId() {
         return orderId;

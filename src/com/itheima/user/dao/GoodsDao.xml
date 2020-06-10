@@ -14,6 +14,7 @@
             <id property="gId" column="g_id"/>
             <result property="gName" column="g_name"/>
             <result property="gPrice" column="g_price"/>
+            <result property="gNumber" column="g_number"/>
             <result property="gPhoto" column="g_photo"/>
             <association property="tbGoodsType" javaType="com.itheima.entity.TbGoodsType">
                 <id property="typeId" column="type_id"/>
@@ -22,8 +23,17 @@
         </collection>
     </resultMap>
 
-    <select id="getAllGoodsTypes" resultType="com.itheima.entity.TbGoodsType">
-        select * from tb_goods_type
-    </select>
+    <update id="updateGoodsNum" parameterType="java.util.List">
+        update tb_goods set g_number =
+        <foreach collection="list" item="item" index="index"
+                 separator=" " open="case g_id" close="end">
+            when #{item.gId} then #{item.gNumber}
+        </foreach>
+        where g_id in
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item.gId}
+        </foreach>
+    </update>
 
 </mapper>
