@@ -3,13 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.web.dao.WebUserDao">
-
+<!--得到所有的用户-->
     <select id="getalluser" resultType="com.itheima.web.entity.WebTbUsers">
          select u_id as uId, u_nickname as uNickname,u_account as uAccount,
          u_password as uPassword, u_gender as uGender, u_salt as uSalt, u_email as uEmail,
          u_profile as uProfile, u_create_time as uCreateTime, u_login_time as uLoginTime
-         from tb_user
+         from tb_user order by u_create_time DESC
     </select>
+
+    <!--根据用户id删除用户-->
+    <delete id="deleteuserbyid" parameterType="Integer">
+        delete from tb_user where u_id=#{u_id}
+    </delete>
+    <!--添加用户-->
+    <insert id="adduser" parameterType="com.itheima.web.pojo.user">
+        insert into tb_user(u_nickname,u_account,u_password,u_gender,u_email,u_salt,u_create_time,
+        u_login_time) values(#{nickname},#{account},#{pass},#{gender},#{email},#{salt},#{uCreateTime},#{logintime})
+    </insert>
+   <select id="selectuserbyemail" resultType="String" parameterType="String">
+       select u_salt from tb_user where u_email=#{email}
+   </select>
+    <!--根据id批量删除-->
+    <delete id="deleteusers" parameterType="Integer">
+        delete from tb_user where u_id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!--根据id查找密文，盐值-->
+    <select id="getpassbyid" resultType="com.itheima.web.pojo.pass" parameterType="Integer">
+        select u_password as pass,u_salt as salt from tb_user where u_id=#{id}
+    </select>
+    <!--修改密码，盐值-->
+    <update id="updatepass" parameterType="com.itheima.web.pojo.pass">
+    update tb_user set u_password = #{pass},u_salt = #{salt} where u_id= #{uid}
+
+    </update>
 
 
 </mapper>
