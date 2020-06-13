@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itheima.web.dto.newUser;
 import com.itheima.web.dto.newpass;
+import com.itheima.web.dto.usersreachdto;
 import com.itheima.web.entity.WebTbUsers;
 import com.itheima.web.service.WebUserService;
 import com.itheima.web.service.impl.WebUserServiceImpl;
@@ -63,6 +64,12 @@ public class WebUserController {
         return  webUserService.updatepass(p);
 
     }
+    @RequestMapping("/sreachusers")
+    public List<WebTbUsers> sreachuser(@RequestBody usersreachdto u){
 
+        System.out.println(webUserService.getallusers().get(0).toString());
+        List<WebTbUsers> userlist=webUserService.finduser(u);
+        return userlist;
+    }
 
 }

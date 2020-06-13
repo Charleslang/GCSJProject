@@ -3,9 +3,13 @@ package com.itheima.web.service.impl;
 import com.itheima.web.dao.WebUserDao;
 import com.itheima.web.dto.newUser;
 import com.itheima.web.dto.newpass;
+import com.itheima.web.dto.usersreachdto;
+import com.itheima.web.entity.WebTbComments;
 import com.itheima.web.entity.WebTbUsers;
 import com.itheima.web.pojo.pass;
+import com.itheima.web.pojo.sreachcommentspojo;
 import com.itheima.web.pojo.user;
+import com.itheima.web.pojo.usersreachpojo;
 import com.itheima.web.service.WebUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,8 @@ import javax.annotation.Resource;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLOutput;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -112,5 +118,36 @@ public class WebUserServiceImpl implements WebUserService {
             return webUserDao.updatepass(pass1);
         }
         return 0;
+    }
+
+    @Override
+    public List<WebTbUsers> finduser(usersreachdto ud) {
+        if(ud.getStart().equals(""))
+        {
+            ud.setStart("2020-5-20");
+        }
+        if(ud.getEnd().equals(""))
+        {
+            Date d = new Date();
+            System.out.println(d);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String nowdate = sdf.format(d);
+            ud.setEnd(nowdate);
+        }
+        String[] l=ud.getStart().split("-");
+        if(Integer.parseInt(l[2]) > 8 && Integer.parseInt(l[2]) < 30)
+        {
+            int i=Integer.parseInt(l[2])+1;
+            ud.setStart(l[0]+"-"+l[1]+"-"+String.valueOf(i));
+        }else{
+            int i=Integer.parseInt(l[2])+1;
+            ud.setStart(l[0]+"-"+l[1]+"-"+"0"+String.valueOf(i));
+        }
+        usersreachpojo sp=new usersreachpojo();
+        sp.setStart(java.sql.Date.valueOf(ud.getStart()));
+        sp.setEnd(java.sql.Date.valueOf(ud.getEnd()));
+        sp.setUname(ud.getUname());
+        List<WebTbUsers> list = webUserDao.finduser(sp);
+        return list;
     }
 }

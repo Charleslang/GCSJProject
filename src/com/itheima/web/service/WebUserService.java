@@ -2,6 +2,7 @@ package com.itheima.web.service;
 
 import com.itheima.web.dto.newUser;
 import com.itheima.web.dto.newpass;
+import com.itheima.web.dto.usersreachdto;
 import com.itheima.web.entity.WebTbUsers;
 import com.itheima.web.pojo.user;
 
@@ -25,4 +26,6 @@ public interface WebUserService {
     int  deleteusers(String[] list);
     //修改密码
     int updatepass(newpass newpass) throws InvalidKeySpecException, NoSuchAlgorithmException;
+    //根据条件查询用户
+    List<WebTbUsers> finduser(usersreachdto ud);
 }

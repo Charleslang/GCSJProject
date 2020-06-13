@@ -3,6 +3,7 @@ package com.itheima.web.dao;
 import com.itheima.web.entity.WebTbUsers;
 import com.itheima.web.pojo.pass;
 import com.itheima.web.pojo.user;
+import com.itheima.web.pojo.usersreachpojo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,4 +28,7 @@ public interface WebUserDao {
     pass getpassbyid(Integer id);
     //修改密码
     int updatepass(pass pass);
+    //根据条件查找用户
+    List<WebTbUsers> finduser(usersreachpojo u);
+
 }

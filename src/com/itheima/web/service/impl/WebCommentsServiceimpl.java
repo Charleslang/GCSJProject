@@ -64,6 +64,15 @@ public class WebCommentsServiceimpl implements WebCommentsService {
             String nowdate = sdf.format(d);
             s.setEnd(nowdate);
         }
+        String[] l=s.getStart().split("-");
+        if(Integer.parseInt(l[2]) > 8 && Integer.parseInt(l[2]) < 30)
+        {
+            int i=Integer.parseInt(l[2])+1;
+            s.setStart(l[0]+"-"+l[1]+"-"+String.valueOf(i));
+        }else{
+            int i=Integer.parseInt(l[2])+1;
+            s.setStart(l[0]+"-"+l[1]+"-"+"0"+String.valueOf(i));
+        }
         sreachcommentspojo sp=new sreachcommentspojo();
         sp.setStart(java.sql.Date.valueOf(s.getStart()));
         sp.setEnd(java.sql.Date.valueOf(s.getEnd()));

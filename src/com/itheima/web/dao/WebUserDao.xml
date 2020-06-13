@@ -39,6 +39,16 @@
     update tb_user set u_password = #{pass},u_salt = #{salt} where u_id= #{uid}
 
     </update>
+    <!--根据条件查找用户-->
+    <select id="finduser" resultType="com.itheima.web.entity.WebTbUsers" parameterType="com.itheima.web.pojo.usersreachpojo">
+        select u_id as uId, u_nickname as uNickname,u_account as uAccount,
+         u_password as uPassword, u_gender as uGender, u_salt as uSalt, u_email as uEmail,
+         u_profile as uProfile, u_create_time as uCreateTime, u_login_time as uLoginTime
+         from tb_user where u_create_time between #{start} and #{end}
+        <if test="uname != null and uname != ''">
+            and u_nickname LIKE CONCAT('%',#{uname},'%')
+        </if>
+    </select>
 
 
 </mapper>
