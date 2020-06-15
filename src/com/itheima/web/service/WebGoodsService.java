@@ -21,4 +21,8 @@ public interface WebGoodsService {
     int updateGoods(Object o);
 
     int deleteGoods(Integer gId);
+
+    List<WebTbGoods> getTypeGoods(Integer g_type);
+
+    List<WebTbGoods> getNameGoods(String g_name);
 }

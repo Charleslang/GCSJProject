@@ -44,5 +44,15 @@ public class WebGoodsServiceImpl implements WebGoodsService {
         return webGoodsDao.deleteGoods(gId);
     }
 
+    @Override
+    public List<WebTbGoods> getTypeGoods(Integer g_type) {
+        return webGoodsDao.getTypeGoods(g_type);
+    }
+
+    @Override
+    public List<WebTbGoods> getNameGoods(String g_name) {
+        return webGoodsDao.getNameGoods(g_name);
+    }
+
 
 }

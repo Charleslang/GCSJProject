@@ -41,4 +41,12 @@
     <delete id="deleteGoods" parameterType="Integer">
         delete from tb_goods where g_id=#{gId}
     </delete>
+
+    <select id="getTypeGoods" resultMap="webGoodsMap">
+        select * from (select * from tb_goods where g_type=#{g_type}) a,tb_goods_type where g_type = type_id order by g_id
+    </select>
+
+    <select id="getNameGoods" resultMap="webGoodsMap">
+        select * from (select * from tb_goods where g_name like "%"#{g_name}"%") a,tb_goods_type where g_type=type_id
+    </select>
 </mapper>

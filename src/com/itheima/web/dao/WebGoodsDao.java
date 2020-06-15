@@ -20,5 +20,9 @@ public interface WebGoodsDao {
 
     int updateGoods(Object o);
 
-    int deleteGoods(int gId);
+    int deleteGoods(Integer gId);
+
+    List<WebTbGoods> getTypeGoods(Integer g_type);
+
+    List<WebTbGoods> getNameGoods(String g_name);
 }

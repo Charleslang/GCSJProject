@@ -103,4 +103,16 @@ public class WebGoodsController {
         }
         return 1;
     }
+
+    @RequestMapping(value = "/getTypeGoods",method = RequestMethod.GET)
+    @ResponseBody
+    public List<WebTbGoods> getTypeGoods(Integer g_type){
+        return webGoodsService.getTypeGoods(g_type);
+    }
+
+    @RequestMapping(value = "/getNameGoods",method = RequestMethod.GET)
+    @ResponseBody
+    public List<WebTbGoods> getNameGoods(String g_name){
+        return webGoodsService.getNameGoods(g_name);
+    }
 }
