@@ -54,5 +54,16 @@ public class WebGoodsServiceImpl implements WebGoodsService {
         return webGoodsDao.getNameGoods(g_name);
     }
 
+    @Override
+    public List<WebTbGoods> getDateGoods(String start, String end) {
+        System.out.println(start+end+" 1");
+        return webGoodsDao.getDateGoods(start,end);
+    }
+
+    @Override
+    public List<WebTbGoods> getDateTypeGoods(String start, String end, Integer g_type) {
+        return webGoodsDao.getDateTypeGoods(start,end,g_type);
+    }
+
 
 }

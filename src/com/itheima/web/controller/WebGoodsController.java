@@ -115,4 +115,14 @@ public class WebGoodsController {
     public List<WebTbGoods> getNameGoods(String g_name){
         return webGoodsService.getNameGoods(g_name);
     }
+
+    @RequestMapping(value = "/getDateGoods",method = RequestMethod.GET)
+    public List<WebTbGoods> getDateGoods(String start,String end){
+        return webGoodsService.getDateGoods(start,end);
+    }
+
+    @RequestMapping(value = "/getDateTypeGoods",method = RequestMethod.GET)
+    public List<WebTbGoods> getDateTypeGoods(String start,String end,Integer g_type){
+        return webGoodsService.getDateTypeGoods(start,end,g_type);
+    }
 }

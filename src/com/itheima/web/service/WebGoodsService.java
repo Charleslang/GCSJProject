@@ -25,4 +25,8 @@ public interface WebGoodsService {
     List<WebTbGoods> getTypeGoods(Integer g_type);
 
     List<WebTbGoods> getNameGoods(String g_name);
+
+    List<WebTbGoods> getDateGoods(String start,String end);
+
+    List<WebTbGoods> getDateTypeGoods(String start,String end,Integer g_type);
 }

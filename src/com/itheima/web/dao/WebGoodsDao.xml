@@ -49,4 +49,14 @@
     <select id="getNameGoods" resultMap="webGoodsMap">
         select * from (select * from tb_goods where g_name like "%"#{g_name}"%") a,tb_goods_type where g_type=type_id
     </select>
+
+    <select id="getDateGoods" resultMap="webGoodsMap">
+        select * from (select * from tb_goods where g_add_time &gt;= #{start} and g_add_time &lt;= #{end}) a,
+        tb_goods_type where g_type=type_id
+    </select>
+
+    <select id="getDateTypeGoods" resultMap="webGoodsMap" >
+        select * from (select * from tb_goods where g_add_time &gt;= #{start} and g_add_time &lt;= #{end} and g_type=#{g_type}) a,
+        tb_goods_type where g_type=type_id
+    </select>
 </mapper>
