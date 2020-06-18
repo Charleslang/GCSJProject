@@ -2,6 +2,7 @@ package com.itheima.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.itheima.common.validator.DTOValidatorAnnotation;
+import com.itheima.web.dto.GoodsDto;
 import com.itheima.web.entity.WebTbGoods;
 import com.itheima.web.service.WebGoodsService;
 import com.itheima.web.service.impl.WebGoodsServiceImpl;
@@ -85,8 +86,8 @@ public class WebGoodsController {
 
     @RequestMapping(value = "/updateGoods",method = RequestMethod.POST)
     @ResponseBody
-    public int updateGoods(WebTbGoods webTbGoods){
-        return webGoodsService.updateGoods(webTbGoods);
+    public int updateGoods(GoodsDto goodsDto){
+        return webGoodsService.updateGoods(goodsDto);
     }
 
     @RequestMapping(value = "/delGoods",method = RequestMethod.POST)
