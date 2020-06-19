@@ -18,7 +18,9 @@ import javax.annotation.Resource;
 public class AdminController {
     @Resource
     private AdminService adminService;
-
+    /**
+     * 通过账户得到管理员密码
+     */
     @RequestMapping(value = "admin", method = RequestMethod.GET)
     @ResponseBody
     public String getAdmin(String account){

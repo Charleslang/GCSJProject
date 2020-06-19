@@ -65,6 +65,4 @@ public class WebGoodsServiceImpl implements WebGoodsService {
     public List<WebTbGoods> getDateTypeGoods(String start, String end, Integer g_type) {
         return webGoodsDao.getDateTypeGoods(start,end,g_type);
     }
-
-
 }

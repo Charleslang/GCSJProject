@@ -28,6 +28,9 @@ public class WebGoodsController {
     @Resource
     private WebGoodsService webGoodsService;
 
+    /**
+     * 得到所有商品信息
+     */
     @RequestMapping(value="/getAllGoods",method = RequestMethod.GET)
     @ResponseBody
     public ArrayList<WebTbGoods> getAllGoods(){
@@ -73,7 +76,9 @@ public class WebGoodsController {
 	          }
 	    */
     }
-
+    /**
+     * 添加商品信息
+     */
     @RequestMapping(value = "/addGoods",method = RequestMethod.POST)
     @ResponseBody
     public int addGoods(WebTbGoods webTbGoods){
@@ -82,25 +87,33 @@ public class WebGoodsController {
         webTbGoods.setgAddTime(df.format(new Date()));
         return webGoodsService.addGoods(webTbGoods);
     }
-
+    /**
+     * 通过商品id得到商品信息
+     */
     @RequestMapping(value = "/getGoods",method = RequestMethod.GET)
     @ResponseBody
     public WebTbGoods getGoods(String gId){
         return webGoodsService.getGoods(gId);
     }
-
+    /**
+     * 修改商品信息
+     */
     @RequestMapping(value = "/updateGoods",method = RequestMethod.POST)
     @ResponseBody
     public int updateGoods(GoodsDto goodsDto){
         return webGoodsService.updateGoods(goodsDto);
     }
-
+    /**
+     * 删除商品信息
+     */
     @RequestMapping(value = "/delGoods",method = RequestMethod.POST)
     @ResponseBody
     public int deleteGoods(int gId){
         return webGoodsService.deleteGoods(gId);
     }
-
+    /**
+     * 删除所选商品信息
+     */
     @RequestMapping(value = "/delAllGoods",method = RequestMethod.POST)
     @ResponseBody
     public int deleteAllGoods(String[] ids){
@@ -109,24 +122,32 @@ public class WebGoodsController {
         }
         return 1;
     }
-
+    /**
+     * 得到一个类型的商品信息
+     */
     @RequestMapping(value = "/getTypeGoods",method = RequestMethod.GET)
     @ResponseBody
     public List<WebTbGoods> getTypeGoods(Integer g_type){
         return webGoodsService.getTypeGoods(g_type);
     }
-
+    /**
+     * 通过商品名字得到商品信息
+     */
     @RequestMapping(value = "/getNameGoods",method = RequestMethod.GET)
     @ResponseBody
     public List<WebTbGoods> getNameGoods(String g_name){
         return webGoodsService.getNameGoods(g_name);
     }
-
+    /**
+     * 通过添加日期得到商品信息
+     */
     @RequestMapping(value = "/getDateGoods",method = RequestMethod.GET)
     public List<WebTbGoods> getDateGoods(String start,String end){
         return webGoodsService.getDateGoods(start,end);
     }
-
+    /**
+     * 通过添加日期和类型得到商品信息
+     */
     @RequestMapping(value = "/getDateTypeGoods",method = RequestMethod.GET)
     public List<WebTbGoods> getDateTypeGoods(String start,String end,Integer g_type){
         return webGoodsService.getDateTypeGoods(start,end,g_type);
