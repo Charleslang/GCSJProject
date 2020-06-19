@@ -134,6 +134,15 @@ public class WebUserServiceImpl implements WebUserService {
             String nowdate = sdf.format(d);
             ud.setEnd(nowdate);
         }
+         String[] l1=ud.getEnd().split("-");
+        if(Integer.parseInt(l1[2]) > 8 && Integer.parseInt(l1[2]) < 30)
+        {
+            int i=Integer.parseInt(l1[2])+1;
+            ud.setEnd(l1[0]+"-"+l1[1]+"-"+String.valueOf(i));
+        }else{
+            int i=Integer.parseInt(l1[2])+1;
+            ud.setEnd(l1[0]+"-"+l1[1]+"-"+"0"+String.valueOf(i));
+        }
         String[] l=ud.getStart().split("-");
         if(Integer.parseInt(l[2]) > 8 && Integer.parseInt(l[2]) < 30)
         {
