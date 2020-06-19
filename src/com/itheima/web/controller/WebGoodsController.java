@@ -1,11 +1,8 @@
 package com.itheima.web.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.itheima.common.validator.DTOValidatorAnnotation;
+import com.itheima.web.dto.GoodsDto;
 import com.itheima.web.entity.WebTbGoods;
 import com.itheima.web.service.WebGoodsService;
-import com.itheima.web.service.impl.WebGoodsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,8 +17,9 @@ import java.util.*;
 /**
  * 商品管理controller层
  *
- * @author: Lv Bo
- * @create: 2020-06-05
+ * @author Lv Bo
+ * @create 2020-06-05
+ * @version 1.0
  **/
 @CrossOrigin
 @RestController
@@ -35,7 +33,15 @@ public class WebGoodsController {
     public ArrayList<WebTbGoods> getAllGoods(){
         return (ArrayList<WebTbGoods>) webGoodsService.getAllGoods();
     }
-
+    /**
+     *该方法上次图片到服务器
+     * @param request HttpServletRequest对象
+     * @param response HeepServletResponse对象
+     * @param session HttpSession对象
+     * @param file 图片对象
+     * @return Map<String, Object> 上传成功返回成功信息，失败返回失败信息
+     * @exception Exception 异常处理
+     */
     @RequestMapping(value="/upload",method=RequestMethod.POST,produces="application/json;charset=utf-8")
     @ResponseBody//json交互注解
     public Map<String, Object> uploadResource(HttpServletRequest request, HttpServletResponse response, HttpSession session, MultipartFile file) throws Exception{
@@ -85,8 +91,8 @@ public class WebGoodsController {
 
     @RequestMapping(value = "/updateGoods",method = RequestMethod.POST)
     @ResponseBody
-    public int updateGoods(WebTbGoods webTbGoods){
-        return webGoodsService.updateGoods(webTbGoods);
+    public int updateGoods(GoodsDto goodsDto){
+        return webGoodsService.updateGoods(goodsDto);
     }
 
     @RequestMapping(value = "/delGoods",method = RequestMethod.POST)
@@ -114,5 +120,15 @@ public class WebGoodsController {
     @ResponseBody
     public List<WebTbGoods> getNameGoods(String g_name){
         return webGoodsService.getNameGoods(g_name);
+    }
+
+    @RequestMapping(value = "/getDateGoods",method = RequestMethod.GET)
+    public List<WebTbGoods> getDateGoods(String start,String end){
+        return webGoodsService.getDateGoods(start,end);
+    }
+
+    @RequestMapping(value = "/getDateTypeGoods",method = RequestMethod.GET)
+    public List<WebTbGoods> getDateTypeGoods(String start,String end,Integer g_type){
+        return webGoodsService.getDateTypeGoods(start,end,g_type);
     }
 }

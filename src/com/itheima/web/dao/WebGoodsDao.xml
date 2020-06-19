@@ -23,19 +23,25 @@
 
     <insert id="addGoods" parameterType="com.itheima.web.entity.WebTbGoods">
         insert into tb_goods (g_name,g_price,g_number,g_type,g_photo,g_add_time)
-        values (#{gName},#{gPrice},#{gNumber},#{gType},#{gPhoto},#{gAddTime})
+        select #{gName},#{gPrice},#{gNumber},#{gType},#{gPhoto},#{gAddTime}
+        WHERE NOT EXISTS (SELECT * FROM tb_goods WHERE g_name=#{gName})
     </insert>
 
     <select id="getGoods" resultMap="webGoodsMap">
         select * from (select * from tb_goods where g_id=#{gId}) a,tb_goods_type where a.g_type = type_id
     </select>
 
-    <update id="updateGoods" parameterType="com.itheima.web.entity.WebTbGoods">
-        update tb_goods
-        <set>
-            g_name=#{gName},g_price=#{gPrice},g_number=#{gNumber},g_type=#{gType},g_photo=#{gPhoto}
-        </set>
-        where g_id=#{gId}
+    <update id="updateGoods" parameterType="com.itheima.web.dto.GoodsDto">
+        <selectKey keyProperty="count" resultType="int" order="BEFORE">
+            select count(*) from tb_goods where g_name = #{gName}
+        </selectKey>
+        <if test="count==0">
+            update tb_goods
+            <set>
+                g_name=#{gName},g_price=#{gPrice},g_number=#{gNumber},g_type=#{gType},g_photo=#{gPhoto}
+            </set>
+            where g_id=#{gId}
+        </if>
     </update>
 
     <delete id="deleteGoods" parameterType="Integer">
@@ -48,5 +54,15 @@
 
     <select id="getNameGoods" resultMap="webGoodsMap">
         select * from (select * from tb_goods where g_name like "%"#{g_name}"%") a,tb_goods_type where g_type=type_id
+    </select>
+
+    <select id="getDateGoods" resultMap="webGoodsMap">
+        select * from (select * from tb_goods where g_add_time &gt;= #{start} and g_add_time &lt;= #{end}) a,
+        tb_goods_type where g_type=type_id
+    </select>
+
+    <select id="getDateTypeGoods" resultMap="webGoodsMap" >
+        select * from (select * from tb_goods where g_add_time &gt;= #{start} and g_add_time &lt;= #{end} and g_type=#{g_type}) a,
+        tb_goods_type where g_type=type_id
     </select>
 </mapper>

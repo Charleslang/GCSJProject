@@ -1,5 +1,12 @@
 package com.itheima.web.entity;
 
+/**
+ * 管理员实体类
+ *
+ * @author Lv Bo
+ * @create 2020-06-05
+ * @version 1.0
+ **/
 public class Admin {
     private Integer aId;
     private String aAccount;
