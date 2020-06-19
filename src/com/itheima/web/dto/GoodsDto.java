@@ -1,5 +1,12 @@
 package com.itheima.web.dto;
 
+/**
+ * 商品Dto层
+ *
+ * @author Lv Bo
+ * @create 2020-06-05
+ * @version 1.0
+ **/
 public class GoodsDto {
     private Integer gId;
     private String gName;

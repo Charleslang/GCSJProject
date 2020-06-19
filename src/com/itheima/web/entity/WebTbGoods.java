@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * 商品实体类
  *
- * @author: Lv Bo
- * @create: @create: 2020-06-05
- *
+ * @author Lv Bo
+ * @create: 2020-06-05
+ * @version 1.0
  **/
 public class WebTbGoods implements Serializable {
     private Integer gId;
