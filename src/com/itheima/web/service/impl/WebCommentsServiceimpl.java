@@ -64,6 +64,15 @@ public class WebCommentsServiceimpl implements WebCommentsService {
             String nowdate = sdf.format(d);
             s.setEnd(nowdate);
         }
+         String[] l1=s.getEnd().split("-");
+        if(Integer.parseInt(l1[2]) > 8 && Integer.parseInt(l1[2]) < 30)
+        {
+            int i=Integer.parseInt(l1[2])+1;
+            s.setEnd(l1[0]+"-"+l1[1]+"-"+String.valueOf(i));
+        }else{
+            int i=Integer.parseInt(l1[2])+1;
+            s.setEnd(l1[0]+"-"+l1[1]+"-"+"0"+String.valueOf(i));
+        }
         String[] l=s.getStart().split("-");
         if(Integer.parseInt(l[2]) > 8 && Integer.parseInt(l[2]) < 30)
         {
