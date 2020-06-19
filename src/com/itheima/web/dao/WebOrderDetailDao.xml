@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.web.dao.WebOrderDetailDao">
+    <!--获取全部订单-->
+    <select id="getallorder" resultType="com.itheima.web.entity.WebTbOrderDetail">
+        select
+        details_id as deId,
+        goods_id as gId,
+        order_id as oId,
+        goods_price as gPrice,
+        goods_name as gName,
+        goods_img as gImg,
+        goods_num as gNum
+        from tb_order_details
+    </select>
+
+    <!--根据id删除订单-->
+    <delete id="deletbyid" parameterType="Integer">
+        delete from tb_order_details where details_id=#{c_id}
+    </delete>
+
+    <!--根据id批量删除-->
+    <delete id="deleteall" parameterType="Integer">
+        delete  from  tb_order_details where details_id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据条件查询-->
+    <select id="sreachorder" resultType="com.itheima.web.entity.WebTbOrderDetail" parameterType="com.itheima.web.pojo.sreachorderdetailpojo">
+        select
+        details_id as deId,
+        goods_id as gId,
+        order_id as oId,
+        goods_price as gPrice,
+        goods_name as gName,
+        goods_img as gImg,
+        goods_num as gNum
+        from tb_order_details where details_id LIKE CONCAT('%',#{uname},'%')
+    </select>
+</mapper>
