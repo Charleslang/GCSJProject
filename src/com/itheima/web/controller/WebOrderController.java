@@ -38,7 +38,8 @@ public class WebOrderController {
     }
 
     @RequestMapping(value="/sreachorder",method = RequestMethod.POST)
-    public  List<WebTbOrder> sreachorder(@RequestBody sreachorderdto s) throws ParseException {
+    public  List<WebTbOrder> sreachorder(@RequestBody sreachorderdto s) throws ParseException
+    {
         System.out.println(s.toString());
         List<WebTbOrder> list=webOrderService.sreachorder(s);
         return list;
