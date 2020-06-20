@@ -22,7 +22,7 @@ public interface AlipayService {
     /**
      * 用于支付宝异步通知支付结果的入参 notify_url。
      */
-    String NOTIFY_URL = "http://y7nfxz.natappfree.cc/GCSJProject/alipay/callback";
+    String NOTIFY_URL = "http://101.200.166.167/GCSJProject/alipay/callback";
 
     /**
      *  pkcs8 格式的商户私钥。
