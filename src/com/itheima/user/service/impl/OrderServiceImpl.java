@@ -83,4 +83,10 @@ public class OrderServiceImpl implements OrderService {
         int orderStatus = orderDao.getOrderStatus(orderId);
         return orderStatus;
     }
+
+    @Override
+    public OrderAddressDTO getOrderAddr(String userId) {
+        OrderAddressDTO orderAddr = orderDao.getOrderAddr(userId);
+        return orderAddr;
+    }
 }

@@ -23,4 +23,8 @@
         select order_status from tb_order where order_id=#{orderId}
     </select>
 
+    <select id="getOrderAddr" parameterType="java.lang.String" resultType="com.itheima.user.dto.OrderAddressDTO">
+        select a_details, a_phone, a_user_id, a_username from tb_address where a_user_default = 1 and a_user_id = #{userId}
+    </select>
+
 </mapper>
