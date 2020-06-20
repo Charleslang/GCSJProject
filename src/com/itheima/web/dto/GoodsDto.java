@@ -1,23 +1,20 @@
-package com.itheima.web.entity;
-
-import java.io.Serializable;
+package com.itheima.web.dto;
 
 /**
- * 商品实体类
+ * 商品Dto层
  *
  * @author Lv Bo
- * @create: 2020-06-05
+ * @create 2020-06-05
  * @version 1.0
  **/
-public class WebTbGoods implements Serializable {
+public class GoodsDto {
     private Integer gId;
     private String gName;
     private Float gPrice;
     private Integer gNumber;
     private Integer gType;
     private String gPhoto;
-    private String gAddTime;
-    private WebTbGoodsType webTbGoodsType;
+    private int count;
 
     public Integer getgId() {
         return gId;
@@ -67,33 +64,24 @@ public class WebTbGoods implements Serializable {
         this.gPhoto = gPhoto;
     }
 
-    public String getgAddTime() {
-        return gAddTime;
+    public int getCount() {
+        return count;
     }
 
-    public void setgAddTime(String gAddTime) {
-        this.gAddTime = gAddTime;
-    }
-
-    public WebTbGoodsType getWebTbGoodsType() {
-        return webTbGoodsType;
-    }
-
-    public void setWebTbGoodsType(WebTbGoodsType webTbGoodsType) {
-        this.webTbGoodsType = webTbGoodsType;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override
     public String toString() {
-        return "WebTbGoods{" +
+        return "GoodsDto{" +
                 "gId=" + gId +
                 ", gName='" + gName + '\'' +
                 ", gPrice=" + gPrice +
                 ", gNumber=" + gNumber +
                 ", gType=" + gType +
                 ", gPhoto='" + gPhoto + '\'' +
-                ", gAddTime='" + gAddTime + '\'' +
-                ", webTbGoodsType=" + webTbGoodsType.toString() +
+                ", count=" + count +
                 '}';
     }
 }

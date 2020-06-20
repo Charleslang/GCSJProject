@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.web.dao.WebOrderDao">
+    <!--获取全部订单-->
+    <select id="getallorder" resultType="com.itheima.web.entity.WebTbOrder">
+        select
+        order_id as oId,
+        pay_price as pPrice,
+        order_time as oTime,
+        pay_time as pTime,
+        order_status as oStatus,
+        user_id as uId,
+        user_type as uType,
+        user_nickname as uNickname,
+        user_addr as uAddr,
+        store_name as storeName
+        from tb_order
+    </select>
+
+    <!--根据id删除订单-->
+    <delete id="deletbyid" parameterType="Integer">
+        delete from tb_order where order_id=#{c_id}
+    </delete>
+
+    <!--根据id批量删除-->
+    <delete id="deleteall" parameterType="Integer">
+        delete  from  tb_order where order_id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据条件查询-->
+    <select id="sreachorder" resultType="com.itheima.web.entity.WebTbOrder" parameterType="com.itheima.web.pojo.sreachorderpojo">
+        select
+        order_id as oId,
+        pay_price as pPrice,
+        order_time as oTime,
+        pay_time as pTime,
+        order_status as oStatus,
+        user_id as uId,
+        user_type as uType,
+        user_nickname as uNickname,
+        user_addr as uAddr,
+        store_name as storeName
+        from tb_order where order_id LIKE CONCAT('%',#{uname},'%')
+        and order_time between #{start} and #{end}
+    </select>
+</mapper>

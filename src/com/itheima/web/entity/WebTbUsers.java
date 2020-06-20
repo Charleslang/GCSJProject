@@ -1,11 +1,13 @@
 package com.itheima.web.entity;
 
+import java.io.Serializable;
+
 /**
  * @Author ChenKai
  * @Date 2020/6/5/005 21:07
  * @Version 1.0
  */
-public class WebTbUsers {
+public class WebTbUsers implements Serializable {
     private Integer uId;
     private String uNickname;
     private String uAccount;
@@ -104,5 +106,20 @@ public class WebTbUsers {
 
     public void setuAccount(String uAccount) {
         this.uAccount = uAccount;
+    }
+    @Override
+    public String toString() {
+        return "WebTbUsers{" +
+                "uId=" + uId +
+                ", uNickname='" + uNickname + '\'' +
+                ", uAccount='" + uAccount + '\'' +
+                ", uPassword='" + uPassword + '\'' +
+                ", uGender='" + uGender + '\'' +
+                ", uSalt='" + uSalt + '\'' +
+                ", uEmail='" + uEmail + '\'' +
+                ", uProfile='" + uProfile + '\'' +
+                ", uCreateTime=" + uCreateTime +
+                ", uLoginTime=" + uLoginTime +
+                '}';
     }
 }

@@ -1,18 +1,16 @@
 package com.itheima.web.controller;
 
 import com.itheima.web.service.AdminService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 管理员controller层
  *
- * @author: Lv Bo
- * @create: 2020-06-07
+ * @author Lv Bo
+ * @create 2020-06-07
+ * @version 1.0
  **/
 @CrossOrigin
 @RestController
@@ -20,7 +18,9 @@ import java.util.Map;
 public class AdminController {
     @Resource
     private AdminService adminService;
-
+    /**
+     * 通过账户得到管理员密码
+     */
     @RequestMapping(value = "admin", method = RequestMethod.GET)
     @ResponseBody
     public String getAdmin(String account){

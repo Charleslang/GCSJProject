@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * 商品类型实体类
  *
- * @author: Lv Bo
- * @create: 2020-06-05
- *
+ * @author Lv Bo
+ * @create 2020-06-05
+ * @version 1.0
  **/
 public class WebTbGoodsType implements Serializable {
     private Integer typeId;
