@@ -32,16 +32,14 @@
     </select>
 
     <update id="updateGoods" parameterType="com.itheima.web.dto.GoodsDto">
-        <selectKey keyProperty="count" resultType="int" order="BEFORE">
-            select count(*) from tb_goods where g_name = #{gName}
-        </selectKey>
-        <if test="count==0">
-            update tb_goods
-            <set>
-                g_name=#{gName},g_price=#{gPrice},g_number=#{gNumber},g_type=#{gType},g_photo=#{gPhoto}
-            </set>
-            where g_id=#{gId}
-        </if>
+        <!--<selectKey keyProperty="count" resultType="int" order="BEFORE">-->
+            <!--select count(*) from tb_goods where g_name = #{gName}-->
+        <!--</selectKey>-->
+        update tb_goods
+        <set>
+            g_name=#{gName},g_price=#{gPrice},g_number=#{gNumber},g_type=#{gType},g_photo=#{gPhoto}
+        </set>
+        where g_id=#{gId}
     </update>
 
     <delete id="deleteGoods" parameterType="Integer">
